@@ -2423,7 +2423,7 @@ main.center > *,
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">DEMO ACCOUNTS READY — demo admin and demo employee supported for sales presentations.</p></div></div>
+    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">DEMO ROLE FIX READY — admin/employee role is read from app_users and demo admin is forced admin.</p></div></div>
     <div class="headerSearch"><span class="mag">⌕</span><input id="globalSearch" placeholder="Search phone, name, SSN, address..." oninput="handleSearchInput('global')"><span class="hotkey">⌘ K</span></div>
     <div class="topActions">
       <button class="gray helpBtn" onclick="openHelpModal()">Help</button>
@@ -3292,6 +3292,14 @@ const DEMO_EMPLOYEE_PASSWORD='DemoEmployee123!';
 const ADMIN_EMAILS=[ADMIN_EMAIL,DEMO_ADMIN_EMAIL].map(e=>e.toLowerCase());
 function isAdminEmail(email){return ADMIN_EMAILS.includes(String(email||'').toLowerCase().trim())}
 function isProtectedAdminEmail(email){return isAdminEmail(email)}
+function isAdminProfile(profile){
+  if(!profile)return false;
+  let role=String(profile.role||profile.userRole||'').toLowerCase();
+  let status=String(profile.approvalStatus||profile.approval_status||'').toLowerCase();
+  let approved=(profile.isApproved===true || profile.is_approved===true || status==='approved');
+  let active=(profile.isActive!==false && profile.is_active!==false);
+  return role==='admin' && approved && active;
+}
 const URL_KEY='coPilotSupabaseUrl';
 const PUB_KEY='coPilotSupabasePublishableKey';
 const TOKEN_KEY='coPilotSupabaseAccessToken';
@@ -3689,6 +3697,7 @@ async function signup(){
    if(data.access_token){
      storeSession(data);
      let profile=await upsertCurrentUser();
+     currentUser.isAdmin = isAdminEmail(currentUser.email) || isAdminProfile(profile);
      document.getElementById('loginScreen').classList.remove('open');
      if(currentUser.isAdmin || isUserApproved(profile)){
        document.getElementById('pendingScreen').classList.remove('open');
@@ -3858,6 +3867,7 @@ async function boot(){
    let user=await getUser();
    currentUser={email:(user.email||'').toLowerCase(),isAdmin:isAdminEmail(user.email||'')};
    let profile=await upsertCurrentUser();
+   currentUser.isAdmin = isAdminEmail(currentUser.email) || isAdminProfile(profile);
 
    if(!isUserApproved(profile)){
      document.getElementById('loginScreen').classList.remove('open');
