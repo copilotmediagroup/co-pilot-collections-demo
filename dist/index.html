@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<!-- DEMO_AFINCH_REMOVED_MARKER: afinch2678 removed from demo; demo-admin is only protected admin -->
 <!-- DEMO_CHAT_ONLINE_COMPLETE_MARKER: centered badge + self-fix + online presence -->
 <!-- DEMO_CHAT_CENTER_BADGE_COMPLETE_MARKER: centered message unread badge + previous chat fixes -->
 <!-- DEMO_CHAT_BADGE_SELF_FIX_MARKER: unread badge self-message fix -->
@@ -3372,7 +3373,7 @@ button {
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">DEMO CHAT ONLINE COMPLETE — centered badge, self-fix, and reliable green online status.</p></div></div>
+    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">DEMO AFINCH REMOVED READY — demo admin only, live admin removed from demo app.</p></div></div>
     <div class="headerSearch"><span class="mag">⌕</span><input id="globalSearch" placeholder="Search phone, name, SSN, address..." oninput="handleSearchInput('global')"><span class="hotkey">⌘ K</span></div>
     <div class="topActions">
       <button class="gray helpBtn" onclick="openHelpModal()">Help</button>
@@ -4473,12 +4474,12 @@ button {
 </script>
 <script src="/config.js"></script>
 <script>
-const ADMIN_EMAIL='afinch2678@gmail.com';
+const ADMIN_EMAIL='demo-admin@copilotdemo.com';
 const DEMO_ADMIN_EMAIL='demo-admin@copilotdemo.com';
 const DEMO_EMPLOYEE_EMAIL='demo-employee@copilotdemo.com';
 const DEMO_ADMIN_PASSWORD='DemoAdmin123!';
 const DEMO_EMPLOYEE_PASSWORD='DemoEmployee123!';
-const ADMIN_EMAILS=[ADMIN_EMAIL,DEMO_ADMIN_EMAIL].map(e=>e.toLowerCase());
+const ADMIN_EMAILS=[...new Set([ADMIN_EMAIL,DEMO_ADMIN_EMAIL])].map(e=>e.toLowerCase());
 function isAdminEmail(email){return ADMIN_EMAILS.includes(String(email||'').toLowerCase().trim())}
 function isProtectedAdminEmail(email){return isAdminEmail(email)}
 function isAdminProfile(profile){
@@ -9040,7 +9041,7 @@ function buildChatContacts(){
     let approved=(u.isApproved===true || u.is_approved===true || String(u.approvalStatus||u.approval_status||'').toLowerCase()==='approved');
     if(email && active && approved)add(email);
   });
-  if(!currentUser.isAdmin)add('afinch2678@gmail.com');
+  if(!currentUser.isAdmin)add('demo-admin@copilotdemo.com');
   chatAllMessages.forEach(m=>{
     let from=String(m.fromEmail||'').toLowerCase(), to=String(m.toEmail||'').toLowerCase();
     if(from===me)add(to);
@@ -9277,7 +9278,7 @@ buildChatContacts = function(){
       let role=String(u.role||'').toLowerCase();
       if(email && role==='admin')add(email);
     });
-    add('afinch2678@gmail.com');
+    add('demo-admin@copilotdemo.com');
   }
 
   (chatAllMessages||[]).forEach(m=>{
@@ -9606,7 +9607,7 @@ buildChatContacts = function(){
       let role=String(u.role||'').toLowerCase();
       if(email && role==='admin')add(email);
     });
-    add('afinch2678@gmail.com');
+    add('demo-admin@copilotdemo.com');
   }
 
   (chatPresenceData||[]).forEach(p=>{
