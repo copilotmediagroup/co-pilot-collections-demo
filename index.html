@@ -2353,10 +2353,478 @@ main.center > *,
   line-height:1.25!important;
 }
 
+
+/* ================================
+   MOBILE FRIENDLY LAYOUT FIX
+   ================================ */
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden !important;
+}
+
+button, input, select, textarea {
+  font-size: 16px;
+}
+
+button {
+  min-height: 40px;
+  touch-action: manipulation;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Tablet and small laptop */
+@media (max-width: 1100px) {
+  .app {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .topbar {
+    gap: 10px !important;
+    align-items: flex-start !important;
+    flex-wrap: wrap !important;
+    padding: 10px !important;
+  }
+
+  .brand {
+    min-width: 230px !important;
+    max-width: 100% !important;
+  }
+
+  .headerSearch {
+    order: 3 !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    max-width: none !important;
+  }
+
+  .topActions {
+    margin-left: auto !important;
+    display: flex !important;
+    gap: 6px !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-end !important;
+  }
+
+  .topActions button {
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .main,
+  .workspace,
+  .content,
+  .layout,
+  .dashboardLayout,
+  .accountLayout,
+  .queueLayout {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .stats,
+  .statGrid,
+  .dashStats,
+  .qaStats,
+  .cards,
+  .grid,
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  table {
+    min-width: 760px;
+  }
+
+  .tableWrap,
+  .scrollWrap,
+  .dataTableWrap,
+  .resultsTableWrap {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+/* Phones */
+@media (max-width: 720px) {
+  body {
+    background: #f8fafc !important;
+  }
+
+  .landing,
+  .loginScreen,
+  #loginScreen {
+    min-height: 100dvh !important;
+    padding: 14px !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+  }
+
+  .landingGrid,
+  .landingShell,
+  .loginGrid,
+  .loginLayout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .landingHero,
+  .landingLoginCard,
+  .loginBox,
+  .loginCard,
+  aside.loginBox,
+  .landingLoginCard {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    border-radius: 18px !important;
+    padding: 18px !important;
+  }
+
+  .landingHero h1,
+  .loginHero h1 {
+    font-size: 30px !important;
+    line-height: 1.05 !important;
+    letter-spacing: -1.2px !important;
+  }
+
+  .landingHero p,
+  .loginHero p {
+    font-size: 14px !important;
+    line-height: 1.45 !important;
+  }
+
+  .landingFeatures,
+  .featureGrid,
+  .landingCards {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .landingDemoBox {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .landingDemoBox span {
+    min-width: 0 !important;
+  }
+
+  .landingDemoBox button {
+    width: 100% !important;
+  }
+
+  .loginActions {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+
+  .loginActions button,
+  .demoLoginBtn {
+    width: 100% !important;
+    min-height: 46px !important;
+    font-size: 15px !important;
+  }
+
+  .landingLoginCard input,
+  .loginBox input,
+  .loginCard input,
+  input,
+  select,
+  textarea {
+    width: 100% !important;
+    min-height: 44px !important;
+    max-width: 100% !important;
+  }
+
+  .app {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .topbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 20 !important;
+    width: 100% !important;
+    padding: 8px !important;
+    gap: 8px !important;
+    background: rgba(255,255,255,.96) !important;
+    backdrop-filter: blur(8px) !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+  }
+
+  .brand {
+    width: calc(100% - 56px) !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .brand h1 {
+    font-size: 14px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 230px !important;
+  }
+
+  .brand .sub,
+  .brand p.sub {
+    font-size: 10px !important;
+    line-height: 1.15 !important;
+    max-width: 240px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .logo,
+  .appBrandLogo {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+  }
+
+  .headerSearch {
+    order: 4 !important;
+    width: 100% !important;
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
+    height: 42px !important;
+  }
+
+  .headerSearch input {
+    height: 42px !important;
+  }
+
+  .hotkey {
+    display: none !important;
+  }
+
+  .topActions {
+    order: 3 !important;
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  .topActions button {
+    min-height: 38px !important;
+    padding: 7px 6px !important;
+    font-size: 11px !important;
+    border-radius: 10px !important;
+  }
+
+  .main,
+  .content,
+  .workspace,
+  .page,
+  .panel,
+  .card,
+  .accountCard,
+  .queuePanel,
+  .detailPanel {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .main,
+  .workspace,
+  .queueLayout,
+  .accountLayout,
+  .dashboardLayout {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    padding: 8px !important;
+  }
+
+  .sidebar,
+  .queueSidebar,
+  .leftRail,
+  .queueList,
+  .accountList {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    max-height: 260px !important;
+    overflow-y: auto !important;
+    border-radius: 14px !important;
+  }
+
+  .detailPanel,
+  .accountDetail,
+  .rightPanel,
+  .workPanel {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .stats,
+  .statGrid,
+  .dashStats,
+  .qaStats,
+  .cards,
+  .grid,
+  .summaryGrid,
+  .importGrid,
+  .formGrid,
+  .twoCol,
+  .threeCol,
+  .fourCol {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .stat,
+  .statCard,
+  .miniCard,
+  .infoCard {
+    min-height: auto !important;
+    padding: 12px !important;
+  }
+
+  .toolbar,
+  .rowActions,
+  .actions,
+  .buttonRow,
+  .modalActions,
+  .formActions {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .toolbar button,
+  .rowActions button,
+  .actions button,
+  .buttonRow button,
+  .modalActions button,
+  .formActions button {
+    width: 100% !important;
+    min-height: 42px !important;
+  }
+
+  .accountHeader,
+  .detailHeader,
+  .sectionHeader,
+  .modalHeader {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .phoneGrid,
+  .phoneList,
+  .quickActions {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  .phoneBtn,
+  .quickAction,
+  .callBtn {
+    width: 100% !important;
+    min-height: 44px !important;
+    font-size: 14px !important;
+  }
+
+  .modal,
+  .modalPanel,
+  .dialog,
+  .drawer,
+  .popupPanel {
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+    max-height: calc(100dvh - 20px) !important;
+    margin: 10px !important;
+    border-radius: 16px !important;
+    overflow-y: auto !important;
+  }
+
+  .modalContent,
+  .modalBody,
+  .dialogBody {
+    max-height: calc(100dvh - 150px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  table {
+    font-size: 12px !important;
+    min-width: 700px !important;
+  }
+
+  th, td {
+    padding: 8px !important;
+  }
+
+  .tableWrap,
+  .scrollWrap,
+  .dataTableWrap,
+  .resultsTableWrap,
+  .previewTable,
+  .employeeTableWrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .importProgressBox,
+  .globalBusyCard {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    border-radius: 16px !important;
+  }
+
+  .hiddenMobile {
+    display: none !important;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .landingHero h1,
+  .loginHero h1 {
+    font-size: 26px !important;
+  }
+
+  .topActions {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .brand h1 {
+    max-width: 190px !important;
+  }
+
+  .brand .sub,
+  .brand p.sub {
+    max-width: 190px !important;
+  }
+}
+
 </style>
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 <div id="loginScreen" class="loginScreen open">
@@ -2426,7 +2894,7 @@ main.center > *,
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">FINAL DEMO ROLE OVERRIDE READY — Demo Admin button forces admin UI and demo employee stays employee.</p></div></div>
+    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">MOBILE FRIENDLY LAYOUT READY — responsive phone/tablet view with easier touch controls.</p></div></div>
     <div class="headerSearch"><span class="mag">⌕</span><input id="globalSearch" placeholder="Search phone, name, SSN, address..." oninput="handleSearchInput('global')"><span class="hotkey">⌘ K</span></div>
     <div class="topActions">
       <button class="gray helpBtn" onclick="openHelpModal()">Help</button>
