@@ -24,7 +24,7 @@ declare
   c_import_batches int := 0;
   c_accounts int := 0;
 begin
-  if v_email <> 'afinch2678@gmail.com' then
+  if v_email <> 'demo-admin@copilotdemo.com' then
     raise exception 'Admin only';
   end if;
 

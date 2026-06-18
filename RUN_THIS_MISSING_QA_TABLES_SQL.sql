@@ -90,13 +90,13 @@ with check (auth.role() = 'authenticated');
 create policy payments_ledger_update_admin
 on public.payments_ledger for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
-with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
+with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy payments_ledger_delete_admin
 on public.payments_ledger for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy account_docs_select_authenticated
 on public.account_docs for select
@@ -111,13 +111,13 @@ with check (auth.role() = 'authenticated');
 create policy account_docs_update_admin
 on public.account_docs for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
-with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
+with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy account_docs_delete_admin
 on public.account_docs for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy call_results_select_authenticated
 on public.call_results for select
@@ -132,13 +132,13 @@ with check (auth.role() = 'authenticated');
 create policy call_results_update_admin
 on public.call_results for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
-with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
+with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy call_results_delete_admin
 on public.call_results for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 -- Force Supabase/PostgREST schema cache refresh by touching comments.
 comment on table public.payments_ledger is 'Payment ledger table for Co Pilot Collections Manager';

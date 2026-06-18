@@ -59,7 +59,7 @@ create policy team_messages_select
 on public.team_messages for select
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
   or lower(coalesce(from_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
 );
@@ -75,12 +75,12 @@ create policy team_messages_update
 on public.team_messages for update
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
   or lower(coalesce(from_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
 )
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
   or lower(coalesce(from_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
 );
@@ -89,7 +89,7 @@ create policy team_messages_delete
 on public.team_messages for delete
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
 );
 
 notify pgrst, 'reload schema';

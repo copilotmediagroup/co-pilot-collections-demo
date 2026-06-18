@@ -35,7 +35,7 @@ create policy follow_ups_select_approved
 on public.follow_ups for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
+  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
@@ -49,7 +49,7 @@ create policy follow_ups_insert_approved
 on public.follow_ups for insert
 to authenticated
 with check (
-  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
+  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
@@ -63,12 +63,12 @@ create policy follow_ups_update_approved
 on public.follow_ups for update
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
+  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
+  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
 );
@@ -76,4 +76,4 @@ with check (
 create policy follow_ups_delete_admin
 on public.follow_ups for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');

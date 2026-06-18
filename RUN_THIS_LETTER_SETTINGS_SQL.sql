@@ -24,18 +24,18 @@ using (auth.role() = 'authenticated');
 create policy company_settings_admin_insert
 on public.company_settings for insert
 to authenticated
-with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy company_settings_admin_update
 on public.company_settings for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
-with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
+with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 create policy company_settings_admin_delete
 on public.company_settings for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
+using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
 
 insert into public.company_settings(setting_key, setting_value, updated_by_email)
 values
