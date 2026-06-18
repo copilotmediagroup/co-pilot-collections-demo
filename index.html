@@ -2423,7 +2423,7 @@ main.center > *,
 
 <div class="app">
   <header class="topbar">
-    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">DEMO CONFIG READY — connected to demo Supabase project with demo admin/employee roles.</p></div></div>
+    <div class="brand"><div class="logo appBrandLogo" id="appBrandLogo">b</div><div><h1 id="appBrandName">Co Pilot Collections Manager</h1><p class="sub" id="appBrandSub">FINAL DEMO ROLE OVERRIDE READY — Demo Admin button forces admin UI and demo employee stays employee.</p></div></div>
     <div class="headerSearch"><span class="mag">⌕</span><input id="globalSearch" placeholder="Search phone, name, SSN, address..." oninput="handleSearchInput('global')"><span class="hotkey">⌘ K</span></div>
     <div class="topActions">
       <button class="gray helpBtn" onclick="openHelpModal()">Help</button>
@@ -3303,16 +3303,36 @@ function isAdminProfile(profile){
 
 function forceCurrentUserRole(profile=null){
   let email=String(currentUser.email||'').toLowerCase().trim();
-  if(isAdminEmail(email)){
+  let override=getDemoRoleOverride();
+
+  if(override==='admin' || email===DEMO_ADMIN_EMAIL || /demo-admin/i.test(email) || isAdminEmail(email)){
     currentUser.isAdmin=true;
     return 'admin';
   }
+
+  if(override==='employee' || email===DEMO_EMPLOYEE_EMAIL){
+    currentUser.isAdmin=false;
+    return 'employee';
+  }
+
   if(isAdminProfile(profile)){
     currentUser.isAdmin=true;
     return 'admin';
   }
+
   currentUser.isAdmin=false;
   return 'employee';
+}
+
+
+function setDemoRoleOverride(role){
+  if(role==='admin' || role==='employee')localStorage.setItem(DEMO_ROLE_OVERRIDE_KEY,role);
+}
+function clearDemoRoleOverride(){
+  localStorage.removeItem(DEMO_ROLE_OVERRIDE_KEY);
+}
+function getDemoRoleOverride(){
+  return localStorage.getItem(DEMO_ROLE_OVERRIDE_KEY)||'';
 }
 
 const URL_KEY='coPilotSupabaseUrl';
@@ -3320,6 +3340,7 @@ const PUB_KEY='coPilotSupabasePublishableKey';
 const TOKEN_KEY='coPilotSupabaseAccessToken';
 const REFRESH_KEY='coPilotSupabaseRefreshToken';
 const EXP_KEY='coPilotSupabaseTokenExpiresAt';
+const DEMO_ROLE_OVERRIDE_KEY='coPilotDemoRoleOverride';
 let accounts=[], appUsers=[], currentAccountId='', currentDisposition='', currentUser={email:'',isAdmin:false};
 const DISPOS=['No Answer','Left Voicemail','Promise to Pay','Disputed','Bad Number','Callback','Settled','DNC'];
 const FIELDS=["portfolio", "accountDescription", "clientAccountNumber", "accountId", "accountNumber", "issuerName", "firstName", "middleName", "lastName", "fullName", "ssn", "dob", "address", "address2", "city", "state", "zip", "employer", "occupation", "description", "email", "originalCreditor", "typeOfDebt", "originalBalance", "principal", "currentBalance", "openDate", "dateAccountOpened", "accountReceiveDate", "delinquencyDate", "chargeOffDate", "origLastPmtDate", "lastPaymentDate", "lastPaymentAmount", "bankRoutingNumber", "bankAccountNumber", "origEmployer", "origStoreName", "origStoreCity", "origStoreState", "origBankName", "origBankAcctLast4Digits", "origPrincipalBalance", "origOriginalLoanAmount", "origChargeOffBalance", "origLoanType", "origPrincipalLoanAmount", "origInterestAmount", "origReturnFee", "phone1", "phone1Type", "phone1LineType", "phone1Source", "phone1Note", "phone1Status", "phone2", "phone2Type", "phone2LineType", "phone2Source", "phone2Note", "phone2Status", "phone3", "phone3Type", "phone3LineType", "phone3Source", "phone3Note", "phone3Status", "phone4", "phone4Type", "phone4LineType", "phone4Source", "phone4Note", "phone4Status", "phone5", "phone5Type", "phone5LineType", "phone5Source", "phone5Note", "phone5Status", "phone6", "phone6Type", "phone6LineType", "phone6Source", "phone6Note", "phone6Status", "phone7", "phone7Type", "phone7LineType", "phone7Source", "phone7Note", "phone7Status", "phone8", "phone8Type", "phone8LineType", "phone8Source", "phone8Note", "phone8Status", "phone9", "phone9Type", "phone9LineType", "phone9Source", "phone9Note", "phone9Status", "phone10", "phone10Type", "phone10LineType", "phone10Source", "phone10Note", "phone10Status", "rawData", "status", "assignedToEmail", "assignedByEmail", "assignmentMethod"];
@@ -3649,6 +3670,7 @@ function downloadDemoCSV(){
 
 
 function fillDemoLogin(role){
+  setDemoRoleOverride(role==='admin'?'admin':'employee');
   let email=role==='admin'?DEMO_ADMIN_EMAIL:DEMO_EMPLOYEE_EMAIL;
   let pass=role==='admin'?DEMO_ADMIN_PASSWORD:DEMO_EMPLOYEE_PASSWORD;
   let emailEl=document.getElementById('loginEmail');
@@ -3676,10 +3698,12 @@ function whoami(){
     email:currentUser.email||'',
     isAdmin:currentUser.isAdmin,
     isAdminEmail:isAdminEmail(currentUser.email),
-    adminEmails:ADMIN_EMAILS
+    demoRoleOverride:getDemoRoleOverride(),
+    adminEmails:ADMIN_EMAILS,
+    expectedDemoAdmin:DEMO_ADMIN_EMAIL
   };
   console.log('Co Pilot role debug:',info);
-  alert('Role debug:\n'+JSON.stringify(info,null,2));
+  alert('Role debug:\\n'+JSON.stringify(info,null,2));
 }
 
 async function login(){
@@ -3687,6 +3711,9 @@ async function login(){
    clearLoginError();
    setLoginBusy(true,'Logging in...');
    let email=val('loginEmail').trim().toLowerCase(),password=val('loginPassword');
+   if(email===DEMO_ADMIN_EMAIL || /demo-admin/i.test(email))setDemoRoleOverride('admin');
+   else if(email===DEMO_EMPLOYEE_EMAIL)setDemoRoleOverride('employee');
+   else clearDemoRoleOverride();
    if(!email||!password)throw new Error('Enter email and password.');
    let data=await authFetch('/auth/v1/token?grant_type=password',{email,password});
    storeSession(data);
@@ -3761,6 +3788,7 @@ function clearSession(){
 }
 function logout(){
  clearSession();
+ clearDemoRoleOverride();
  location.reload();
 }
 function jwtPayload(tok){
