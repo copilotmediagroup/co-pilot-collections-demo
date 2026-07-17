@@ -30,7 +30,7 @@ returns boolean
 language sql
 stable
 as $$
-  select public.current_app_email() = 'demo-admin@copilotdemo.com';
+  select public.current_app_email() = 'afinch2678@gmail.com';
 $$;
 
 create or replace function public.is_approved_app_user()
@@ -316,6 +316,6 @@ using (public.is_app_admin());
 
 -- 10) Make sure your admin user is approved.
 insert into public.app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
-values ('demo-admin@copilotdemo.com','admin','approved',true,true,now(),now(),now())
+values ('afinch2678@gmail.com','admin','approved',true,true,now(),now(),now())
 on conflict (email) do update
 set role='admin', approval_status='approved', is_approved=true, is_active=true, updated_at=now(), last_seen_at=now();
