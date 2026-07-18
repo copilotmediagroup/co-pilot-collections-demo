@@ -13,7 +13,7 @@ declare
   actor_email text := lower(coalesce(auth.jwt() ->> 'email',''));
   target text := lower(trim(coalesce(target_email,'')));
   clean text := nullif(trim(coalesce(new_full_name,'')),'');
-  actor_is_admin boolean := lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com');
+  actor_is_admin boolean := lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com');
 begin
   if actor_email = '' then
     raise exception 'not authenticated';
@@ -36,11 +36,11 @@ begin
     insert into public.app_users (email, role, full_name, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
     values (
       target,
-      case when target in ('afinch2678@gmail.com','demo-admin@copilotdemo.com') then 'admin' else 'employee' end,
+      case when target = 'afinch2678@gmail.com' then 'admin' else 'employee' end,
       clean,
-      case when target in ('afinch2678@gmail.com','demo-admin@copilotdemo.com') then 'approved' else 'pending' end,
-      case when target in ('afinch2678@gmail.com','demo-admin@copilotdemo.com') then true else false end,
-      case when target in ('afinch2678@gmail.com','demo-admin@copilotdemo.com') then true else false end,
+      case when target = 'afinch2678@gmail.com' then 'approved' else 'pending' end,
+      case when target = 'afinch2678@gmail.com' then true else false end,
+      case when target = 'afinch2678@gmail.com' then true else false end,
       now(), now(), now()
     );
   end if;
@@ -51,6 +51,7 @@ $$;
 
 grant execute on function public.cpcm_update_staff_display_name(text,text) to authenticated;
 
+-- Keep the DEMO admin's real name set by default.
 update public.app_users
    set full_name = coalesce(nullif(full_name,''),'Antonio Finch'),
        role = 'admin',
