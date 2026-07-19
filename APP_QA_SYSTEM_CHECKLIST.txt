@@ -119,7 +119,7 @@ DEMO_IN_APP_PRICING_HUB_R8N5:
 - Click Back to App and confirm the active demo workspace returns.
 - Confirm the public login screen contains no pricing buttons.
 
-DEMO LICENSING LEAD FORM R8N6:
+DEMO LICENSING LEAD FORM R8N7:
 - Login through Admin Demo and Employee Demo separately.
 - Open the Private Agency Licensing banner.
 - Confirm each Request Access button opens the form with the correct plan and price.
@@ -128,3 +128,5 @@ DEMO LICENSING LEAD FORM R8N6:
 - Confirm the success screen appears.
 - Confirm the submission appears under Netlify Forms -> co-pilot-licensing-inquiry.
 - Confirm the configured email notification reaches datamarkethouse@gmail.com.
+
+- Confirm the deployed HTML contains NETLIFY_STATIC_FORM_BLUEPRINT_R8N7 and Netlify detects co-pilot-licensing-inquiry under Active forms.

@@ -1,4 +1,4 @@
-CO PILOT COLLECTIONS MANAGER - DEMO IN-APP PRICING + LICENSING LEAD FORM R8N6
+CO PILOT COLLECTIONS MANAGER - DEMO IN-APP PRICING + LICENSING LEAD FORM R8N7
 
 This DEMO-only release keeps pricing inside the authenticated demo experience:
 - No View Pricing, Pricing PDF, Contact, or sales buttons appear on the public login page
@@ -9,6 +9,7 @@ This DEMO-only release keeps pricing inside the authenticated demo experience:
 - The selected plan and listed price are filled automatically
 - The form collects agency name, contact name, business email, phone, staff size, account volume, client logins, current software, contact preference, best contact time, and notes
 - A honeypot field helps reduce automated spam
+- A static hidden Netlify form blueprint is included so Netlify detects the form during deployment
 - Successful submissions are stored by Netlify Forms and appear in the Netlify dashboard
 - The pricing PDF remains available from the internal pricing page
 - The Full Version upgrade dialog still links to the internal pricing page
@@ -17,9 +18,9 @@ IMPORTANT - ONE-TIME NETLIFY EMAIL NOTIFICATION SETUP
 The form code is already built and named: co-pilot-licensing-inquiry
 Netlify requires the site owner to choose the notification email in the Netlify dashboard. This cannot be securely hard-coded into the public website.
 
-After deploying R8N6:
+After deploying R8N7:
 1. Open the DEMO project in Netlify.
-2. Open Forms and confirm "co-pilot-licensing-inquiry" appears after deployment.
+2. Trigger a clear-cache production deploy, then open Forms and confirm "co-pilot-licensing-inquiry" appears under Active forms.
 3. Go to Project configuration -> Notifications -> Emails and webhooks.
 4. Under Form submission notifications, choose Add notification.
 5. Select Email notification.

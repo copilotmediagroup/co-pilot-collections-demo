@@ -10,7 +10,7 @@
 <!-- DOCUMENT_BRANDING_TYPED_ESIGN_R4_2026_07_18: brand logo/name on documents + company Created By + DocuSign-style typed signature chooser -->
 
 <head>
-<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N6: DEMO One-Click Login + Public Import Guard + In-App Pricing + Licensing Lead Form -->
+<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N7: DEMO One-Click Login + Public Import Guard + In-App Pricing + Licensing Lead Form + Static Netlify Detection -->
 <!-- DEMO_COMPLIANCE_GUARD_MARKER: compliance guard + call rules -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
@@ -3593,6 +3593,31 @@ button {
   </script>
 </head>
 <body>
+<!-- NETLIFY_STATIC_FORM_BLUEPRINT_R8N7
+     Netlify scans this static hidden form at deploy time.
+     The visible in-app form posts the same form-name and field names through JavaScript. -->
+<form name="co-pilot-licensing-inquiry" method="POST" data-netlify="true" netlify netlify-honeypot="bot-field" hidden aria-hidden="true">
+  <input type="hidden" name="form-name" value="co-pilot-licensing-inquiry">
+  <input name="bot-field">
+  <input name="selected_plan">
+  <input name="plan_price">
+  <input name="source_url">
+  <input name="submitted_at">
+  <input name="demo_view">
+  <input name="subject">
+  <input name="agency_name">
+  <input name="contact_name">
+  <input name="email" type="email">
+  <input name="phone" type="tel">
+  <input name="staff_users">
+  <input name="account_volume">
+  <input name="client_portal_users">
+  <input name="current_software">
+  <input name="preferred_contact">
+  <input name="best_contact_time">
+  <textarea name="message"></textarea>
+  <input name="contact_consent">
+</form>
 <div id="loginScreen" class="loginScreen open">
   <div class="landingShell">
     <section class="landingHero">
@@ -12257,7 +12282,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   if(window.__cpcmSystemQaVersionLockLoaded) return;
   window.__cpcmSystemQaVersionLockLoaded = true;
   var BUILD_NAME = "Co Pilot Collections Manager — Stability QA / Version Lock";
-  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N6";
+  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N7";
   var EXPECTED_ENV = "DEMO";
   var EXPECTED_URL = "https://nixqpmgkmrzjsaqhqqew.supabase.co";
   var EXPECTED_KEY_PREFIX = "sb_publishable_g4D2rVDfqyGJLe1yhShBjQ";
@@ -13267,7 +13292,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
 
 
 <style id="cpcmDemoPricingStyles">
-/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N6 — DEMO ONLY */
+/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N7 — DEMO ONLY */
 .cpcmPricingBanner{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #99b8ff;border-radius:16px;padding:13px 15px;background:linear-gradient(115deg,#05225f 0%,#0b45c6 58%,#16a34a 135%);color:#fff;box-shadow:0 8px 22px rgba(20,87,255,.17);cursor:pointer;position:relative;overflow:hidden;min-height:76px}
 .cpcmPricingBanner:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-95px;background:rgba(255,255,255,.10);pointer-events:none}
 .cpcmPricingBannerMain{display:flex;align-items:center;gap:12px;min-width:0;position:relative;z-index:1}.cpcmPricingBannerIcon{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center;font-size:23px;flex:0 0 auto}.cpcmPricingBannerCopy{min-width:0}.cpcmPricingBannerEyebrow{font-size:9px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase;color:#bfdbfe;margin-bottom:3px}.cpcmPricingBannerTitle{font-size:15px;font-weight:1000;line-height:1.15}.cpcmPricingBannerText{font-size:10px;color:#dbeafe;font-weight:750;margin-top:4px;line-height:1.35}.cpcmPricingBannerChips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.cpcmPricingBannerChip{font-size:8px;font-weight:1000;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);color:#fff}.cpcmPricingBannerAction{height:39px;border-radius:10px;padding:0 13px;background:#fff!important;color:#1457ff!important;border:1px solid #fff!important;font-size:10px!important;font-weight:1000!important;white-space:nowrap;position:relative;z-index:1;box-shadow:0 6px 16px rgba(15,23,42,.16)}
@@ -13363,7 +13388,7 @@ body.cpcmLeadOpen{overflow:hidden!important}
       <button type="button" class="cpcmLeadClose" onclick="closeLicensingForm()" aria-label="Close inquiry form">×</button>
     </div>
     <div id="cpcmLeadPlan" class="cpcmLeadPlan"><b id="cpcmLeadPlanName">Agency Plan</b><span id="cpcmLeadPlanPrice">$599/month + $1,500 setup</span></div>
-    <form id="cpcmLicensingInquiryForm" class="cpcmLeadForm" name="co-pilot-licensing-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+    <form id="cpcmLicensingInquiryForm" class="cpcmLeadForm" name="co-pilot-licensing-inquiry-visible" method="POST">
       <input type="hidden" name="form-name" value="co-pilot-licensing-inquiry">
       <input type="hidden" id="cpcmLeadSelectedPlan" name="selected_plan" value="Agency">
       <input type="hidden" id="cpcmLeadPlanPriceInput" name="plan_price" value="$599/month + $1,500 setup">
@@ -13393,10 +13418,10 @@ body.cpcmLeadOpen{overflow:hidden!important}
 </div>
 
 <script id="cpcmDemoPricingScript">
-/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N6 — DEMO ONLY. NEVER COPY TO LIVE. */
+/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N7 — DEMO ONLY. NEVER COPY TO LIVE. */
 (function(){
   'use strict';
-  const BUILD='DEMO_IN_APP_PRICING_LEAD_FORM_R8N6';
+  const BUILD='DEMO_IN_APP_PRICING_LEAD_FORM_R8N7';
   const $=id=>document.getElementById(id);
 
   function ensurePricingRoot(){
