@@ -101,7 +101,7 @@ DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
 - LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.
 
 
-DEMO IN-APP PRICING HUB R8N4:
+DEMO IN-APP PRICING HUB R8N5:
 - Logged-out DEMO page shows only the one-click Admin Demo and Employee Demo access; no View Pricing, Pricing PDF, or Contact pricing actions appear.
 - After Admin or Employee Demo login, a highlighted Private Agency Licensing banner appears at the top of the account workspace.
 - Clicking the banner opens the internal full-page Pricing & Monthly Licensing screen.
@@ -111,3 +111,10 @@ DEMO IN-APP PRICING HUB R8N4:
 - The public-demo Full Version upgrade dialog includes View Pricing and opens the internal pricing screen.
 - Back to App returns to the active demo workspace.
 - LIVE remains unchanged and contains no public pricing or embedded demo credentials.
+
+DEMO_IN_APP_PRICING_HUB_R8N5:
+- Login through Admin Demo and Employee Demo.
+- Confirm the highlighted Private Agency Licensing banner appears inside the app.
+- Click View Pricing & Licensing and confirm the full pricing page opens.
+- Click Back to App and confirm the active demo workspace returns.
+- Confirm the public login screen contains no pricing buttons.
