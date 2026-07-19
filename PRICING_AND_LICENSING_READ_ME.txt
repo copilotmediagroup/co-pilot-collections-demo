@@ -1,19 +1,34 @@
-CO PILOT COLLECTIONS MANAGER - DEMO IN-APP PRICING HUB R8N5
+CO PILOT COLLECTIONS MANAGER - DEMO IN-APP PRICING + LICENSING LEAD FORM R8N6
 
-This DEMO-only release changes pricing access to an authenticated in-app experience:
-- No View Pricing, Pricing PDF, or Contact buttons appear on the public login page
+This DEMO-only release keeps pricing inside the authenticated demo experience:
+- No View Pricing, Pricing PDF, Contact, or sales buttons appear on the public login page
 - A highlighted Private Agency Licensing banner appears inside Admin Demo and Employee Demo
-- The banner opens a full-page pricing and licensing screen inside the app
-- Four monthly licensing plans remain available
-- Founding Agency Program notice remains available
-- Plan-specific licensing email actions remain available
-- The pricing PDF can be downloaded from the internal pricing page
+- The banner opens the full pricing and licensing screen inside the app
+- Starter, Agency, Agency Plus, and Enterprise request buttons open a professional inquiry form
+- Contact Sales opens the same form with Contact Sales selected
+- The selected plan and listed price are filled automatically
+- The form collects agency name, contact name, business email, phone, staff size, account volume, client logins, current software, contact preference, best contact time, and notes
+- A honeypot field helps reduce automated spam
+- Successful submissions are stored by Netlify Forms and appear in the Netlify dashboard
+- The pricing PDF remains available from the internal pricing page
 - The Full Version upgrade dialog still links to the internal pricing page
 
-No Supabase SQL is required for this pricing navigation update.
+IMPORTANT - ONE-TIME NETLIFY EMAIL NOTIFICATION SETUP
+The form code is already built and named: co-pilot-licensing-inquiry
+Netlify requires the site owner to choose the notification email in the Netlify dashboard. This cannot be securely hard-coded into the public website.
+
+After deploying R8N6:
+1. Open the DEMO project in Netlify.
+2. Open Forms and confirm "co-pilot-licensing-inquiry" appears after deployment.
+3. Go to Project configuration -> Notifications -> Emails and webhooks.
+4. Under Form submission notifications, choose Add notification.
+5. Select Email notification.
+6. Choose the form "co-pilot-licensing-inquiry" or all form submissions.
+7. Enter: datamarkethouse@gmail.com
+8. Use a subject such as: New Co Pilot Licensing Inquiry
+9. Save the notification.
+10. Submit one test inquiry from the deployed demo and confirm it appears in Netlify Forms and in datamarkethouse@gmail.com.
+
+No Supabase SQL is required for this feature.
 Do not copy DEMO pricing/login scripts or demo credentials into LIVE.
 Pricing effective July 2026 and subject to final written agreement.
-
-R8N5 navigation repair:
-- Pricing page is moved to the document root before opening.
-- The highlighted in-app licensing banner now opens the full pricing page reliably.

@@ -10,7 +10,7 @@
 <!-- DOCUMENT_BRANDING_TYPED_ESIGN_R4_2026_07_18: brand logo/name on documents + company Created By + DocuSign-style typed signature chooser -->
 
 <head>
-<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N5: DEMO One-Click Login + Public Import Guard + In-App Pricing Hub -->
+<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N6: DEMO One-Click Login + Public Import Guard + In-App Pricing + Licensing Lead Form -->
 <!-- DEMO_COMPLIANCE_GUARD_MARKER: compliance guard + call rules -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
@@ -12257,7 +12257,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   if(window.__cpcmSystemQaVersionLockLoaded) return;
   window.__cpcmSystemQaVersionLockLoaded = true;
   var BUILD_NAME = "Co Pilot Collections Manager — Stability QA / Version Lock";
-  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N5";
+  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N6";
   var EXPECTED_ENV = "DEMO";
   var EXPECTED_URL = "https://nixqpmgkmrzjsaqhqqew.supabase.co";
   var EXPECTED_KEY_PREFIX = "sb_publishable_g4D2rVDfqyGJLe1yhShBjQ";
@@ -13164,7 +13164,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
       </div>
       <div class="demoUpgradeActions">
         <button class="continue" onclick="closeDemoUpgrade()">Continue Demo</button>
-        <a class="sales" href="mailto:datamarkethouse@gmail.com?subject=Co%20Pilot%20Collections%20Manager%20Full%20Access">Request Full Access</a>
+        <button type="button" class="sales" onclick="closeDemoUpgrade();requestPricingPlan('Full Version','Plan recommendation requested')">Request Full Access</button>
       </div>
     </div>
   </div>
@@ -13267,7 +13267,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
 
 
 <style id="cpcmDemoPricingStyles">
-/* DEMO_IN_APP_PRICING_HUB_R8N5 — DEMO ONLY */
+/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N6 — DEMO ONLY */
 .cpcmPricingBanner{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:16px;border:1px solid #99b8ff;border-radius:16px;padding:13px 15px;background:linear-gradient(115deg,#05225f 0%,#0b45c6 58%,#16a34a 135%);color:#fff;box-shadow:0 8px 22px rgba(20,87,255,.17);cursor:pointer;position:relative;overflow:hidden;min-height:76px}
 .cpcmPricingBanner:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-70px;top:-95px;background:rgba(255,255,255,.10);pointer-events:none}
 .cpcmPricingBannerMain{display:flex;align-items:center;gap:12px;min-width:0;position:relative;z-index:1}.cpcmPricingBannerIcon{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.24);display:grid;place-items:center;font-size:23px;flex:0 0 auto}.cpcmPricingBannerCopy{min-width:0}.cpcmPricingBannerEyebrow{font-size:9px;font-weight:1000;letter-spacing:.09em;text-transform:uppercase;color:#bfdbfe;margin-bottom:3px}.cpcmPricingBannerTitle{font-size:15px;font-weight:1000;line-height:1.15}.cpcmPricingBannerText{font-size:10px;color:#dbeafe;font-weight:750;margin-top:4px;line-height:1.35}.cpcmPricingBannerChips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}.cpcmPricingBannerChip{font-size:8px;font-weight:1000;padding:4px 7px;border-radius:999px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.18);color:#fff}.cpcmPricingBannerAction{height:39px;border-radius:10px;padding:0 13px;background:#fff!important;color:#1457ff!important;border:1px solid #fff!important;font-size:10px!important;font-weight:1000!important;white-space:nowrap;position:relative;z-index:1;box-shadow:0 6px 16px rgba(15,23,42,.16)}
@@ -13290,6 +13290,17 @@ body.cpcmPricingOpen{overflow:hidden!important}
 .cpcmPricingRequest{height:39px;border-radius:10px;margin-top:13px;width:100%;justify-content:center;background:#1457ff;color:#fff;font-size:11px}.cpcmPricingCard.starter .cpcmPricingRequest{background:#0ea5e9}.cpcmPricingCard.plus .cpcmPricingRequest{background:#7c3aed}.cpcmPricingCard.enterprise .cpcmPricingRequest{background:#334155}
 .cpcmPricingLower{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;margin-top:12px}.cpcmPricingPanel{background:#fff;border:1px solid #dbe3ef;border-radius:16px;padding:14px 15px;box-shadow:0 4px 14px rgba(15,23,42,.04)}.cpcmPricingPanel h3{font-size:15px;margin:0 0 9px}.cpcmPricingCompare{width:100%;border-collapse:collapse;font-size:10px}.cpcmPricingCompare th{background:#05225f;color:#fff;text-align:left;padding:7px}.cpcmPricingCompare td{border:1px solid #e2e8f0;padding:7px;color:#334155;font-weight:750}.cpcmPricingCompare tr:nth-child(even) td{background:#f8fbff}.cpcmPricingCompare th:not(:first-child),.cpcmPricingCompare td:not(:first-child){text-align:center}
 .cpcmFounding{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:13px;padding:12px;margin-bottom:10px}.cpcmFounding b{display:block;font-size:14px}.cpcmFounding p{font-size:11px;line-height:1.45;margin:5px 0 0;font-weight:750}.cpcmPricingWhy{display:grid;gap:7px}.cpcmPricingWhy div{border:1px solid #e2e8f0;background:#f8fbff;border-radius:11px;padding:9px}.cpcmPricingWhy b{font-size:11px}.cpcmPricingWhy span{display:block;color:#64748b;font-size:10px;line-height:1.35;margin-top:3px;font-weight:750}.cpcmPricingFooter{text-align:center;color:#64748b;font-size:10px;font-weight:750;margin-top:13px;line-height:1.45}
+
+.cpcmLeadModal{position:fixed;inset:0;z-index:2147483500;background:rgba(2,6,23,.76);display:none;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.cpcmLeadModal.open{display:flex!important}.cpcmLeadCard{width:min(980px,96vw);max-height:94vh;overflow:auto;background:#fff;border:1px solid #cbd5e1;border-radius:20px;box-shadow:0 30px 90px rgba(2,6,23,.42)}
+.cpcmLeadHead{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;padding:17px 19px;background:linear-gradient(135deg,#05225f,#0b45c6);color:#fff;border-radius:19px 19px 0 0}.cpcmLeadHead h2{margin:0;font-size:21px}.cpcmLeadHead p{margin:5px 0 0;color:#dbeafe;font-size:11px;line-height:1.4;font-weight:750}.cpcmLeadClose{width:35px;height:35px;padding:0;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);color:#fff;justify-content:center;font-size:18px;flex:0 0 auto}
+.cpcmLeadPlan{margin:14px 18px 0;padding:11px 13px;border:1px solid #bfdbfe;background:#eff6ff;border-radius:13px;display:flex;justify-content:space-between;gap:10px;align-items:center}.cpcmLeadPlan b{font-size:13px;color:#1e3a8a}.cpcmLeadPlan span{font-size:11px;color:#1d4ed8;font-weight:900;text-align:right}
+.cpcmLeadForm{padding:14px 18px 19px}.cpcmLeadGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.cpcmLeadField{min-width:0}.cpcmLeadField.full{grid-column:1/-1}.cpcmLeadField label{font-size:10px;font-weight:1000;color:#334155;margin-bottom:5px}.cpcmLeadField input,.cpcmLeadField select,.cpcmLeadField textarea{width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px 11px;background:#fff;color:#0f172a;font-size:12px}.cpcmLeadField textarea{min-height:90px;resize:vertical}.cpcmLeadField input:focus,.cpcmLeadField select:focus,.cpcmLeadField textarea:focus{outline:0;border-color:#1457ff;box-shadow:0 0 0 3px rgba(20,87,255,.12)}
+.cpcmLeadConsent{grid-column:1/-1;display:flex;align-items:flex-start;gap:8px;border:1px solid #e2e8f0;background:#f8fafc;border-radius:11px;padding:9px 10px;color:#475569;font-size:10px;font-weight:750;line-height:1.4}.cpcmLeadConsent input{width:auto;margin-top:2px}.cpcmLeadActions{display:flex;justify-content:flex-end;align-items:center;gap:9px;margin-top:13px;flex-wrap:wrap}.cpcmLeadActions button{height:40px;border-radius:10px;padding:0 14px;font-size:11px}.cpcmLeadCancel{background:#e2e8f0;color:#334155}.cpcmLeadSubmit{background:#1457ff;color:#fff;min-width:165px;justify-content:center}.cpcmLeadSubmit[disabled]{opacity:.65;cursor:wait}.cpcmLeadStatus{flex:1;min-width:220px;font-size:11px;font-weight:850;color:#475569}.cpcmLeadStatus.success{color:#166534;background:#dcfce7;border:1px solid #bbf7d0;padding:9px 10px;border-radius:10px}.cpcmLeadStatus.error{color:#991b1b;background:#fee2e2;border:1px solid #fecaca;padding:9px 10px;border-radius:10px}
+.cpcmLeadSuccess{display:none;margin:18px;padding:26px;border:1px solid #bbf7d0;background:#f0fdf4;border-radius:16px;text-align:center}.cpcmLeadSuccess.open{display:block}.cpcmLeadSuccessIcon{width:58px;height:58px;border-radius:17px;margin:0 auto 11px;display:grid;place-items:center;background:#16a34a;color:#fff;font-size:29px;font-weight:1000}.cpcmLeadSuccess h3{font-size:20px;margin:0 0 6px;color:#14532d}.cpcmLeadSuccess p{font-size:12px;color:#166534;line-height:1.5;margin:0 auto 14px;max-width:590px}.cpcmLeadSuccess button{height:39px;border-radius:10px;background:#1457ff;justify-content:center}.cpcmHoneypot{position:absolute!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;clip-path:inset(50%)!important;height:1px!important;width:1px!important;margin:-1px!important;padding:0!important;border:0!important;white-space:nowrap!important}
+body.cpcmLeadOpen{overflow:hidden!important}
+@media(max-width:720px){.cpcmLeadGrid{grid-template-columns:1fr}.cpcmLeadField.full,.cpcmLeadConsent{grid-column:1}.cpcmLeadActions{display:grid;grid-template-columns:1fr}.cpcmLeadStatus{min-width:0}.cpcmLeadActions button{width:100%;justify-content:center}.cpcmLeadPlan{display:block}.cpcmLeadPlan span{display:block;text-align:left;margin-top:4px}}
+
 @media(max-width:1180px){.cpcmPricingGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cpcmPricingCard.agency{transform:none}.cpcmPricingLower{grid-template-columns:1fr}}
 @media(max-width:720px){.cpcmPricingHero{display:block}.cpcmPricingHeroActions{justify-content:flex-start;margin-top:12px}.cpcmPricingGrid{grid-template-columns:1fr}.cpcmPricingIntro{display:block}.cpcmPricingIntroPill{display:inline-block;margin-top:8px}.cpcmPricingShell{padding:9px}.cpcmPricingCompareWrap{overflow:auto}.cpcmPricingBanner{display:block}.cpcmPricingBannerAction{margin-top:10px;width:100%;justify-content:center}.cpcmPricingBannerMain{align-items:flex-start}}
 </style>
@@ -13303,7 +13314,7 @@ body.cpcmPricingOpen{overflow:hidden!important}
       </div>
       <div class="cpcmPricingHeroActions">
         <a class="download" href="/Co_Pilot_Collections_Pricing_Guide.pdf" download>Download Pricing PDF</a>
-        <a href="mailto:datamarkethouse@gmail.com?subject=Co%20Pilot%20Collections%20Manager%20Licensing">Contact Sales</a>
+        <button type="button" onclick="requestPricingPlan('Contact Sales','Custom licensing conversation')">Contact Sales</button>
         <button class="close" onclick="closePricingPage()">Back to App</button>
       </div>
     </section>
@@ -13344,11 +13355,48 @@ body.cpcmPricingOpen{overflow:hidden!important}
   </div>
 </div>
 
+
+<div id="cpcmLeadModal" class="cpcmLeadModal" aria-hidden="true">
+  <div class="cpcmLeadCard" role="dialog" aria-modal="true" aria-labelledby="cpcmLeadTitle">
+    <div class="cpcmLeadHead">
+      <div><h2 id="cpcmLeadTitle">Request Licensing Information</h2><p>Tell us about your agency. Your selected plan and contact details will be sent securely through Netlify Forms.</p></div>
+      <button type="button" class="cpcmLeadClose" onclick="closeLicensingForm()" aria-label="Close inquiry form">×</button>
+    </div>
+    <div id="cpcmLeadPlan" class="cpcmLeadPlan"><b id="cpcmLeadPlanName">Agency Plan</b><span id="cpcmLeadPlanPrice">$599/month + $1,500 setup</span></div>
+    <form id="cpcmLicensingInquiryForm" class="cpcmLeadForm" name="co-pilot-licensing-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="co-pilot-licensing-inquiry">
+      <input type="hidden" id="cpcmLeadSelectedPlan" name="selected_plan" value="Agency">
+      <input type="hidden" id="cpcmLeadPlanPriceInput" name="plan_price" value="$599/month + $1,500 setup">
+      <input type="hidden" id="cpcmLeadSource" name="source_url" value="">
+      <input type="hidden" id="cpcmLeadSubmittedAt" name="submitted_at" value="">
+      <input type="hidden" id="cpcmLeadDemoView" name="demo_view" value="">
+      <input type="hidden" id="cpcmLeadSubject" name="subject" value="New Co Pilot Licensing Inquiry">
+      <p class="cpcmHoneypot"><label>Do not fill this out: <input name="bot-field"></label></p>
+      <div class="cpcmLeadGrid">
+        <div class="cpcmLeadField"><label for="cpcmAgencyName">Agency name *</label><input id="cpcmAgencyName" name="agency_name" required autocomplete="organization" placeholder="ABC Collection Services"></div>
+        <div class="cpcmLeadField"><label for="cpcmContactName">Contact name *</label><input id="cpcmContactName" name="contact_name" required autocomplete="name" placeholder="First and last name"></div>
+        <div class="cpcmLeadField"><label for="cpcmBusinessEmail">Business email *</label><input id="cpcmBusinessEmail" name="email" type="email" required autocomplete="email" placeholder="name@agency.com"></div>
+        <div class="cpcmLeadField"><label for="cpcmContactPhone">Contact phone number *</label><input id="cpcmContactPhone" name="phone" type="tel" required autocomplete="tel" placeholder="(555) 555-1212"></div>
+        <div class="cpcmLeadField"><label for="cpcmStaffUsers">Number of staff users *</label><select id="cpcmStaffUsers" name="staff_users" required><option value="">Select staff size</option><option>1–3</option><option>4–10</option><option>11–20</option><option>21–50</option><option>51+</option></select></div>
+        <div class="cpcmLeadField"><label for="cpcmAccountVolume">Approximate account volume *</label><select id="cpcmAccountVolume" name="account_volume" required><option value="">Select account volume</option><option>Under 25,000</option><option>25,000–100,000</option><option>100,001–250,000</option><option>More than 250,000</option><option>Not sure yet</option></select></div>
+        <div class="cpcmLeadField"><label for="cpcmClientUsers">Portfolio owner/client logins</label><select id="cpcmClientUsers" name="client_portal_users"><option value="">Select if known</option><option>0–2</option><option>3–10</option><option>11–25</option><option>26+</option></select></div>
+        <div class="cpcmLeadField"><label for="cpcmCurrentSoftware">Current collections software</label><input id="cpcmCurrentSoftware" name="current_software" placeholder="Simplicity, Collect!, spreadsheets, etc."></div>
+        <div class="cpcmLeadField"><label for="cpcmPreferredContact">Preferred contact method *</label><select id="cpcmPreferredContact" name="preferred_contact" required><option value="">Select preference</option><option>Email</option><option>Phone call</option><option>Text message</option><option>Video walkthrough</option></select></div>
+        <div class="cpcmLeadField"><label for="cpcmBestTime">Best time to contact</label><input id="cpcmBestTime" name="best_contact_time" placeholder="Weekday mornings, after 3 PM, etc."></div>
+        <div class="cpcmLeadField full"><label for="cpcmLeadMessage">Questions, migration needs, or special requirements</label><textarea id="cpcmLeadMessage" name="message" placeholder="Tell us what your agency needs, what you want to replace, or any questions about setup and licensing."></textarea></div>
+        <label class="cpcmLeadConsent"><input type="checkbox" name="contact_consent" value="Yes" required><span>I agree to be contacted about Co Pilot Collections Manager licensing, onboarding, pricing, and product demonstrations.</span></label>
+      </div>
+      <div class="cpcmLeadActions"><div id="cpcmLeadStatus" class="cpcmLeadStatus" aria-live="polite"></div><button type="button" class="cpcmLeadCancel" onclick="closeLicensingForm()">Cancel</button><button id="cpcmLeadSubmit" type="submit" class="cpcmLeadSubmit">Submit Licensing Request</button></div>
+    </form>
+    <div id="cpcmLeadSuccess" class="cpcmLeadSuccess"><div class="cpcmLeadSuccessIcon">✓</div><h3>Request received</h3><p>Your licensing inquiry has been submitted. The Co Pilot Collections team will review your agency information and contact you about pricing, setup, and the next steps.</p><button type="button" onclick="closeLicensingForm()">Return to Pricing</button></div>
+  </div>
+</div>
+
 <script id="cpcmDemoPricingScript">
-/* DEMO_IN_APP_PRICING_HUB_R8N5 — DEMO ONLY. NEVER COPY TO LIVE. */
+/* DEMO_IN_APP_PRICING_LEAD_FORM_R8N6 — DEMO ONLY. NEVER COPY TO LIVE. */
 (function(){
   'use strict';
-  const BUILD='DEMO_IN_APP_PRICING_HUB_R8N5';
+  const BUILD='DEMO_IN_APP_PRICING_LEAD_FORM_R8N6';
   const $=id=>document.getElementById(id);
 
   function ensurePricingRoot(){
@@ -13376,7 +13424,38 @@ body.cpcmPricingOpen{overflow:hidden!important}
     document.body.classList.remove('cpcmPricingOpen');
     return true;
   };
-  window.requestPricingPlan=function(plan,price){let subject='Co Pilot Collections Manager - '+plan+' licensing inquiry';let body='Hello,%0D%0A%0D%0AI am interested in the '+plan+' plan ('+price+').%0D%0A%0D%0AAgency name:%0D%0AContact name:%0D%0ABusiness email:%0D%0APhone:%0D%0AApproximate staff users:%0D%0AApproximate account volume:%0D%0A%0D%0APlease send licensing and onboarding details.';location.href='mailto:datamarkethouse@gmail.com?subject='+encodeURIComponent(subject)+'&body='+body};
+  function ensureLeadRoot(){
+    let m=$('cpcmLeadModal');
+    if(m&&m.parentElement!==document.body)document.body.appendChild(m);
+    return m;
+  }
+  function setLeadValue(id,value){let el=$(id);if(el)el.value=value==null?'':String(value)}
+  function getDemoView(){try{return String((typeof currentUser!=='undefined'&&currentUser&&currentUser.role)||sessionStorage.getItem('cpcm_demo_entry_role')||'public-demo')}catch(e){return 'public-demo'}}
+  window.requestPricingPlan=function(plan,price){
+    let m=ensureLeadRoot();if(!m)return false;
+    let selected=plan||'Contact Sales',listed=price||'Custom licensing conversation';
+    let pn=$('cpcmLeadPlanName'),pp=$('cpcmLeadPlanPrice');if(pn)pn.textContent=selected;if(pp)pp.textContent=listed;
+    setLeadValue('cpcmLeadSelectedPlan',selected);setLeadValue('cpcmLeadPlanPriceInput',listed);setLeadValue('cpcmLeadSubject','New Co Pilot Licensing Inquiry — '+selected);
+    setLeadValue('cpcmLeadSource',location.href);setLeadValue('cpcmLeadSubmittedAt',new Date().toISOString());setLeadValue('cpcmLeadDemoView',getDemoView());
+    let form=$('cpcmLicensingInquiryForm'),success=$('cpcmLeadSuccess'),status=$('cpcmLeadStatus');if(form)form.style.display='block';if(success)success.classList.remove('open');if(status){status.textContent='';status.className='cpcmLeadStatus'}
+    m.classList.add('open');m.setAttribute('aria-hidden','false');document.body.classList.add('cpcmLeadOpen');setTimeout(()=>$('cpcmAgencyName')?.focus(),60);return true;
+  };
+  window.closeLicensingForm=function(){let m=ensureLeadRoot();if(!m)return false;m.classList.remove('open');m.setAttribute('aria-hidden','true');document.body.classList.remove('cpcmLeadOpen');return true};
+  function encodeNetlifyForm(form){return new URLSearchParams(new FormData(form)).toString()}
+  async function submitLicensingInquiry(e){
+    e.preventDefault();let form=e.currentTarget,btn=$('cpcmLeadSubmit'),status=$('cpcmLeadStatus');
+    if(!form.reportValidity())return false;
+    setLeadValue('cpcmLeadSource',location.href);setLeadValue('cpcmLeadSubmittedAt',new Date().toISOString());setLeadValue('cpcmLeadDemoView',getDemoView());
+    if(btn){btn.disabled=true;btn.textContent='Submitting...'}if(status){status.textContent='Sending your request securely...';status.className='cpcmLeadStatus'}
+    try{
+      let response=await fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:encodeNetlifyForm(form)});
+      if(!response.ok)throw new Error('Submission failed with status '+response.status);
+      if(status){status.textContent='';status.className='cpcmLeadStatus'}form.style.display='none';$('cpcmLeadSuccess')?.classList.add('open');form.reset();
+      return true;
+    }catch(err){console.error('Licensing inquiry submission failed',err);if(status){status.textContent='The request could not be submitted. Please check your connection and try again.';status.className='cpcmLeadStatus error'}return false}
+    finally{if(btn){btn.disabled=false;btn.textContent='Submit Licensing Request'}}
+  }
+  function bindLicensingForm(){let form=$('cpcmLicensingInquiryForm');if(form&&!form.dataset.bound){form.dataset.bound='1';form.addEventListener('submit',submitLicensingInquiry)}}
 
   function injectPricingBanner(){
     let center=document.querySelector('main.center');if(!center||$('cpcmPricingBanner'))return;
@@ -13389,8 +13468,8 @@ body.cpcmPricingOpen{overflow:hidden!important}
     let actions=document.querySelector('#demoUpgradeModal .demoUpgradeActions');if(!actions||$('cpcmUpgradePricingBtn'))return;
     let btn=document.createElement('button');btn.id='cpcmUpgradePricingBtn';btn.className='continue';btn.textContent='View Pricing';btn.onclick=function(){if(typeof closeDemoUpgrade==='function')closeDemoUpgrade();openPricingPage()};let sales=actions.querySelector('.sales');actions.insertBefore(btn,sales||null);
   }
-  function init(){ensurePricingRoot();injectPricingBanner();injectUpgradeButton();setTimeout(()=>{ensurePricingRoot();injectPricingBanner();injectUpgradeButton()},700);setInterval(()=>{ensurePricingRoot();injectPricingBanner();injectUpgradeButton()},1800)}
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('cpcmPricingPage')?.classList.contains('open'))closePricingPage()});
+  function init(){ensurePricingRoot();ensureLeadRoot();bindLicensingForm();injectPricingBanner();injectUpgradeButton();setTimeout(()=>{ensurePricingRoot();ensureLeadRoot();bindLicensingForm();injectPricingBanner();injectUpgradeButton()},700);setInterval(()=>{ensurePricingRoot();ensureLeadRoot();bindLicensingForm();injectPricingBanner();injectUpgradeButton()},1800)}
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if($('cpcmLeadModal')?.classList.contains('open'))closeLicensingForm();else if($('cpcmPricingPage')?.classList.contains('open'))closePricingPage()});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.CPCM_DEMO_PRICING_BUILD=BUILD;
 })();
