@@ -86,3 +86,16 @@ SILENT LOGGED-OUT STARTUP FIX R8N1:
 - Opening or refreshing the login page while logged out must not show a 'Could not load accounts / Not logged in' alert.
 - Account-loading errors still display after an authenticated login.
 - Only one startup boot sequence should run.
+
+
+DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
+- Run RUN_THIS_DEMO_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2.sql in DEMO Supabase only.
+- Logged out page shows Admin Demo and Employee Demo one-click buttons.
+- Admin Demo automatically enters as demo-admin@copilotdemo.com.
+- Employee Demo automatically enters as demo-employee@copilotdemo.com.
+- No Access Type dropdown or public Request Access button appears in DEMO.
+- Public Demo Admin clicking Import sees the Full Version upgrade dialog and no file picker/import occurs.
+- Public Demo Admin clicking Add Account, Clear, Rollback, or Hard Delete sees the upgrade dialog.
+- Direct database inserts/deletes by either public demo identity are rejected with DEMO_UPGRADE_REQUIRED.
+- Private owner admin login remains able to maintain DEMO data.
+- LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.

@@ -49,7 +49,7 @@ Run it in this package's matching Supabase project before client portal testing.
 R8 CLIENT REMITTANCE + AGENCY FEE ACCOUNTING:
 Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_CLIENT_REMITTANCE_AGENCY_FEE_R8.sql in this matching DEMO Supabase project before testing.
 This release adds fee schedules, remittance batches, batch payment detail, client statements, branded PDF/CSV exports, and processor-fee capture.
-Build marker: STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N1
+Build marker: STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N2
 
 
 NETLIFY DEPLOYMENT FIX:
@@ -63,3 +63,13 @@ R8N1 SILENT LOGIN STARTUP FIX:
 - The logged-out login page no longer displays 'Could not load accounts: Not logged in.'
 - Real account-loading errors still display after authentication.
 - No Supabase SQL is required for this fix.
+
+
+R8N2 DEMO ONE-CLICK ACCESS + IMPORT GUARD:
+- Admin Demo button signs in demo-admin@copilotdemo.com automatically.
+- Employee Demo button signs in demo-employee@copilotdemo.com automatically.
+- Public demo users cannot import CSVs, create new accounts, clear the database, rollback imports, or hard-delete import batches.
+- Upgrade dialog explains that portfolio importing requires the full version.
+- Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_DEMO_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2.sql in DEMO Supabase.
+- Confirm both Auth users exist with the passwords documented in that SQL file.
+- This feature is DEMO ONLY and must never be copied into LIVE.

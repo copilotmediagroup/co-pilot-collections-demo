@@ -10,7 +10,7 @@
 <!-- DOCUMENT_BRANDING_TYPED_ESIGN_R4_2026_07_18: brand logo/name on documents + company Created By + DocuSign-style typed signature chooser -->
 
 <head>
-<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N1: Silent Logged-Out Startup Fix -->
+<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N2: DEMO One-Click Login + Public Import Guard -->
 <!-- DEMO_COMPLIANCE_GUARD_MARKER: compliance guard + call rules -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
@@ -12257,7 +12257,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   if(window.__cpcmSystemQaVersionLockLoaded) return;
   window.__cpcmSystemQaVersionLockLoaded = true;
   var BUILD_NAME = "Co Pilot Collections Manager — Stability QA / Version Lock";
-  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N1";
+  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N2";
   var EXPECTED_ENV = "DEMO";
   var EXPECTED_URL = "https://nixqpmgkmrzjsaqhqqew.supabase.co";
   var EXPECTED_KEY_PREFIX = "sb_publishable_g4D2rVDfqyGJLe1yhShBjQ";
@@ -12311,6 +12311,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
     checks.push(line('Professional CSS appears active', bodyFont.indexOf('Arial')>=0 || !!qs('style'), bodyFont||'No computed font', bodyFont && /Times/i.test(bodyFont)));
     checks.push(line('Build marker installed', !!window.__cpcmSystemQaVersionLockLoaded, BUILD_VERSION));
     checks.push(line('Client remittance module installed', !!window.CPCM_CLIENT_REMITTANCE_BUILD, window.CPCM_CLIENT_REMITTANCE_BUILD||'Missing R8 module'));
+    checks.push(line('DEMO one-click login + import guard installed', !!window.CPCM_DEMO_PUBLIC_ACCESS_BUILD, window.CPCM_DEMO_PUBLIC_ACCESS_BUILD||'Missing R8N2 demo module'));
     checks.push(line('Document PDF engine loaded', !!(window.html2canvas&&window.jspdf&&window.jspdf.jsPDF), 'Local html2canvas + jsPDF'));
     checks.push(line('DocuSign-style typed signature controls loaded', !!(window.downloadCurrentDocumentPDF&&window.clearDocumentSignature&&window.applyTypedDocumentSignature&&window.selectDocumentSignatureStyle), 'Document Builder PDF + typed signature chooser'));
     return checks;
@@ -13136,6 +13137,131 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   function init(){injectCss();injectProcessorFeeField();injectAdminButtons();wrapClientRefresh();ensureClientSection();if(currentUser?.isClient)setTimeout(loadClientRemittance,150);setTimeout(()=>{injectAdminButtons();injectProcessorFeeField();wrapClientRefresh()},700)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.CPCM_CLIENT_REMITTANCE_BUILD=BUILD;
+})();
+</script>
+
+
+<style id="cpcmDemoPublicAccessStyles">
+/* DEMO_PUBLIC_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2 */
+.demoAccessPanel{margin:12px 0 14px;border:1px solid #bfdbfe;background:linear-gradient(145deg,#eff6ff,#f8fbff);border-radius:15px;padding:12px;box-shadow:0 5px 16px rgba(37,99,235,.08)}
+.demoAccessHeader{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px}.demoAccessHeader b{font-size:13px;color:#0f172a}.demoAccessPill{border-radius:999px;background:#dcfce7;color:#166534;padding:4px 8px;font-size:9px;font-weight:1000;white-space:nowrap}.demoAccessGrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.demoRoleCard{border:1px solid #c7d2fe;background:#fff;color:#0f172a;border-radius:12px;padding:11px;text-align:left;cursor:pointer;display:block;min-height:92px;transition:.15s ease;box-shadow:0 2px 8px rgba(15,23,42,.04)}.demoRoleCard:hover{border-color:#2563eb;transform:translateY(-1px);box-shadow:0 8px 18px rgba(37,99,235,.12)}.demoRoleCard.admin{background:linear-gradient(145deg,#1d4ed8,#123a91);color:#fff;border-color:#1d4ed8}.demoRoleTop{display:flex;align-items:center;gap:8px;font-weight:1000;font-size:13px}.demoRoleIcon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#eef2ff;color:#1d4ed8;font-size:16px}.demoRoleCard.admin .demoRoleIcon{background:rgba(255,255,255,.16);color:#fff}.demoRoleText{font-size:10px;line-height:1.35;margin-top:7px;color:#64748b;font-weight:800}.demoRoleCard.admin .demoRoleText{color:#dbeafe}.demoRoleEnter{display:block;margin-top:7px;font-size:10px;font-weight:1000;color:#1d4ed8}.demoRoleCard.admin .demoRoleEnter{color:#fff}.demoLoginDivider{display:flex;align-items:center;gap:8px;margin:3px 0 10px;color:#64748b;font-size:9px;font-weight:1000;text-transform:uppercase;letter-spacing:.05em}.demoLoginDivider:before,.demoLoginDivider:after{content:"";height:1px;background:#dbe3ef;flex:1}.demoSafeBadge{display:inline-flex;align-items:center;gap:5px;border:1px solid #fde68a;background:#fffbeb;color:#92400e;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:1000;margin-left:5px}.demoLockedFeature{position:relative!important;opacity:.9}.demoLockedFeature:after{content:"DEMO LOCK";position:absolute;right:-4px;top:-7px;background:#f59e0b;color:#111827;border:2px solid #fff;border-radius:999px;padding:2px 5px;font-size:7px;font-weight:1000;line-height:1;pointer-events:none}.demoUpgradeModal{z-index:999999!important}.demoUpgradeBox{max-width:520px;text-align:center;padding:0;overflow:hidden}.demoUpgradeHero{background:linear-gradient(145deg,#05225f,#0b45c6);color:#fff;padding:24px}.demoUpgradeIcon{width:58px;height:58px;border-radius:17px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:28px;margin:0 auto 12px}.demoUpgradeHero h2{margin:0;font-size:23px}.demoUpgradeHero p{margin:7px auto 0;max-width:410px;color:#dbeafe;font-size:13px;line-height:1.45}.demoUpgradeBody{padding:19px 22px 22px;background:#fff}.demoUpgradeList{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin-bottom:16px}.demoUpgradeItem{border:1px solid #e2e8f0;border-radius:11px;padding:9px;background:#f8fbff;font-size:11px;font-weight:850;color:#334155}.demoUpgradeActions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap}.demoUpgradeActions button,.demoUpgradeActions a{height:39px;border:0;border-radius:10px;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:1000;font-size:12px;cursor:pointer}.demoUpgradeActions .continue{background:#334155;color:#fff}.demoUpgradeActions .sales{background:#16a34a;color:#fff}.demoModeRibbon{display:none;align-items:center;gap:6px;background:#fef3c7;color:#92400e;border:1px solid #fde68a;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:1000;white-space:nowrap}.publicDemoMode .demoModeRibbon{display:inline-flex}
+@media(max-width:620px){.demoAccessGrid,.demoUpgradeList{grid-template-columns:1fr}.demoAccessPill{display:none}}
+</style>
+
+<div id="demoUpgradeModal" class="modal demoUpgradeModal">
+  <div class="modalbox demoUpgradeBox">
+    <div class="demoUpgradeHero">
+      <div class="demoUpgradeIcon">🔒</div>
+      <h2 id="demoUpgradeTitle">Available in the Full Version</h2>
+      <p id="demoUpgradeText">Portfolio importing is disabled in this public demonstration so the demo cannot be used as a free production account.</p>
+    </div>
+    <div class="demoUpgradeBody">
+      <div class="demoUpgradeList">
+        <div class="demoUpgradeItem">✓ Upload and map your own CSV portfolios</div>
+        <div class="demoUpgradeItem">✓ Add and manage production accounts</div>
+        <div class="demoUpgradeItem">✓ Private database and staff access</div>
+        <div class="demoUpgradeItem">✓ Guided setup and data migration</div>
+      </div>
+      <div class="demoUpgradeActions">
+        <button class="continue" onclick="closeDemoUpgrade()">Continue Demo</button>
+        <a class="sales" href="mailto:datamarkethouse@gmail.com?subject=Co%20Pilot%20Collections%20Manager%20Full%20Access">Request Full Access</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="cpcmDemoPublicAccessScript">
+/* DEMO_PUBLIC_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2 — DEMO ONLY. NEVER COPY TO LIVE. */
+(function(){
+  'use strict';
+  const BUILD='DEMO_PUBLIC_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2';
+  const DEMO_USERS={
+    admin:{email:'demo-admin@copilotdemo.com',password:'DemoAdmin123!',label:'Admin Demo'},
+    employee:{email:'demo-employee@copilotdemo.com',password:'DemoEmployee123!',label:'Employee Demo'}
+  };
+  const PUBLIC_EMAILS=Object.values(DEMO_USERS).map(x=>x.email);
+  const $=id=>document.getElementById(id);
+  const esc=v=>String(v==null?'':v).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+
+  function publicDemoEmail(){try{return String((typeof currentUser!=='undefined'&&currentUser&&currentUser.email)||'').toLowerCase().trim()}catch(e){return ''}}
+  window.isPublicDemoUser=function(){return PUBLIC_EMAILS.includes(publicDemoEmail())};
+
+  window.closeDemoUpgrade=function(){let m=$('demoUpgradeModal');if(m)m.classList.remove('open')};
+  window.showDemoUpgrade=function(feature){
+    let title=$('demoUpgradeTitle'),text=$('demoUpgradeText');
+    if(title)title.textContent=(feature||'This feature')+' is available in the Full Version';
+    if(text)text.textContent=(feature||'This feature')+' is disabled in the public demonstration so the demo cannot be used as a free production account. All other sample-data workflows remain available to explore.';
+    let m=$('demoUpgradeModal');if(m)m.classList.add('open');
+  };
+
+  function removeAccessType(){
+    let select=$('loginAccessType');
+    if(select){let label=document.querySelector('label[for="loginAccessType"]');if(label)label.remove();select.remove()}
+    let signup=$('signupBtn');if(signup)signup.style.display='none';
+  }
+
+  function enhanceLogin(){
+    let card=document.querySelector('#loginScreen .landingLoginCard');
+    if(!card||$('demoAccessPanel')){removeAccessType();return}
+    let password=$('loginPassword');if(!password)return;
+    let firstLabel=document.querySelector('label[for="loginEmail"]')||password.previousElementSibling;
+    let panel=document.createElement('div');panel.id='demoAccessPanel';panel.className='demoAccessPanel';panel.innerHTML=`
+      <div class="demoAccessHeader"><b>Choose a demo experience</b><span class="demoAccessPill">No credentials needed</span></div>
+      <div class="demoAccessGrid">
+        <button type="button" class="demoRoleCard admin" onclick="demoQuickLogin('admin')"><span class="demoRoleTop"><span class="demoRoleIcon">👑</span>Admin Demo</span><span class="demoRoleText">Explore staff controls, assignments, reports, client accounting, compliance, and management tools.</span><span class="demoRoleEnter">Enter Admin Demo →</span></button>
+        <button type="button" class="demoRoleCard" onclick="demoQuickLogin('employee')"><span class="demoRoleTop"><span class="demoRoleIcon">🎧</span>Employee Demo</span><span class="demoRoleText">Experience the collector queue, calls, notes, promises, plans, documents, and follow-up workflow.</span><span class="demoRoleEnter">Enter Employee Demo →</span></button>
+      </div>`;
+    let emailLabel=$('loginEmail')?.previousElementSibling;
+    if(emailLabel)emailLabel.insertAdjacentElement('beforebegin',panel);else card.insertBefore(panel,card.children[2]||null);
+    let divider=document.createElement('div');divider.className='demoLoginDivider';divider.textContent='Private owner / support login';panel.insertAdjacentElement('afterend',divider);
+    let mini=document.querySelector('.loginMiniBrand p');if(mini)mini.textContent='One-click Admin or Employee product demonstration.';
+    let notice=document.querySelector('#loginScreen .cleanNotice');if(notice)notice.innerHTML='<b>Public demo:</b> Sample data only. Uploading or creating production accounts is disabled.';
+    removeAccessType();
+  }
+
+  window.demoQuickLogin=async function(role){
+    let info=DEMO_USERS[role]||DEMO_USERS.employee;
+    let email=$('loginEmail'),password=$('loginPassword');
+    if(email)email.value=info.email;if(password)password.value=info.password;
+    try{sessionStorage.setItem('cpcm_demo_entry_role',role)}catch(e){}
+    let st=$('loginStatus');if(st)st.textContent='Opening '+info.label+'...';
+    await window.login();
+  };
+
+  function lockButton(el,label){
+    if(!el)return;el.classList.add('demoLockedFeature');el.title=(label||'Feature')+' — available in the full version';
+  }
+
+  function applyRestrictions(){
+    let active=window.isPublicDemoUser();
+    document.body.classList.toggle('publicDemoMode',active);
+    let top=document.querySelector('.topActions');
+    if(top&&!$('demoModeRibbon')){let r=document.createElement('span');r.id='demoModeRibbon';r.className='demoModeRibbon';r.innerHTML='🔒 Public Demo Safe Mode';let rb=$('roleBadge');if(rb)rb.insertAdjacentElement('beforebegin',r);else top.appendChild(r)}
+    let file=document.querySelector('label.fileBtn input[type="file"][onchange*="importCSV"]');
+    let fileLabel=file?.closest('label');
+    if(fileLabel){lockButton(fileLabel,'Portfolio Import');if(active){file.disabled=true;fileLabel.onclick=function(e){e.preventDefault();e.stopPropagation();showDemoUpgrade('Portfolio Import')}}else{file.disabled=false;fileLabel.onclick=null}}
+    document.querySelectorAll('button[onclick="openModal()"],button[onclick="clearAllAccounts()"]')?.forEach(btn=>lockButton(btn,btn.textContent.trim()||'Account management'));
+  }
+
+  function guard(name,feature,check){
+    let original=window[name];if(typeof original!=='function'||original.__demoGuarded)return;
+    let wrapped=function(){if(window.isPublicDemoUser()&&(!check||check.apply(this,arguments))){showDemoUpgrade(feature);let ev=arguments[0];if(ev?.target?.type==='file')ev.target.value='';return Promise.resolve(false)}return original.apply(this,arguments)};
+    wrapped.__demoGuarded=true;wrapped.__original=original;window[name]=wrapped;
+  }
+
+  function installGuards(){
+    guard('importCSV','Portfolio Import');
+    guard('importMappedCSV','Portfolio Import');
+    guard('openModal','Add New Accounts');
+    guard('saveAccount','Add New Accounts',function(e){let id=$('id')?.value||'';return !id});
+    guard('clearAllAccounts','Delete / Reset Account Database');
+    guard('rollbackImportBatch','Import Rollback');
+    guard('hardDeleteImportBatch','Import Batch Deletion');
+  }
+
+  function init(){enhanceLogin();installGuards();applyRestrictions();setTimeout(()=>{enhanceLogin();installGuards();applyRestrictions()},900);setInterval(()=>{installGuards();applyRestrictions();removeAccessType()},1500)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  window.CPCM_DEMO_PUBLIC_ACCESS_BUILD=BUILD;
 })();
 </script>
 
