@@ -1,0 +1,132 @@
+Co Pilot Collections Manager — QA Smoke Checklist
+
+After uploading this ZIP:
+1. Run npm install && npm run dev.
+2. Confirm the polished layout loads, not raw plain HTML.
+3. Login as admin.
+4. Click System Check and confirm Supabase environment is correct.
+5. Confirm account queue opens.
+6. Save an agent note.
+7. Create a payment plan as employee test user if needed.
+8. Confirm admin can edit/delete payment plans.
+9. Open Compliance Guard.
+10. Open Reports full page and Back to Queue.
+11. Open Chat / Team Messenger.
+12. Open Pay Desk, Ledger, Tickler, Scorecards.
+13. Open Receipts & Letters and generate a receipt.
+14. Draw or type an electronic signature and confirm it appears above Authorized Representative.
+15. Click Download PDF and confirm the PDF matches the right-side Preview.
+16. Confirm the PDF filename includes the document type, consumer, and document number.
+17. Confirm no stuck loading or page unresponsive warning.
+
+
+MESSENGER_PRESENCE_CONTACTS_FB_LAYOUT_FIX:
+- Online count includes current logged-in user.
+- Contact list shows all signed-up staff/admin users, including current user as You.
+- Message bubbles show sender name, timestamp/date, and seen status. Debtor/account attachments must not appear in Messenger.
+
+
+DEMO_STABLE_BOUNDARY_REPAIR_2026_07_18_R1:
+- Receipts/Letters print script boundary repaired.
+- Exact duplicate Messenger Names patch removed; one final override remains after presence layout logic.
+- DEMO environment lock preserved.
+
+R3 PDF ENGINE CHECK:
+- Open System Check and confirm Document PDF engine loaded passes.
+- Download PDF must work in Bolt preview without loading any CDN or /vendor script.
+
+DOCUMENT_BRANDING_TYPED_ESIGN_R4:
+- Receipt/letter header uses the saved app brand name, subtitle, and navigation logo.
+- Created By on the customer-facing receipt shows the company brand name, never the staff email.
+- Footer uses the saved company brand name.
+- Signature area uses typed-name previews with four built-in signature styles.
+- User must select a style, check approval, and click Adopt & Apply Signature.
+- Applied signature, signer name, company role, and electronic-sign timestamp appear in preview and PDF.
+- Freehand mouse signature pad has been removed.
+
+
+CLIENT PORTAL MVP R5:
+- Run RUN_THIS_CLIENT_PORTAL_MVP_SQL.sql.
+- Request a Client / Portfolio Owner login.
+- Admin opens Clients and assigns one or more portfolio names.
+- Confirm client sees only assigned portfolios.
+- Confirm client cannot see collector queue, internal notes, Messenger, scorecards, compliance, SSN, bank data, or admin tools.
+- Confirm client CSV and PDF reports download.
+
+
+STAFF APPROVAL ACTIONS R7:
+- Run RUN_THIS_STAFF_APPROVAL_ACTIONS_FIX_SQL.sql.
+- Open Staff / Manage Employees.
+- Approve a pending employee and confirm status becomes Approved and access becomes Active.
+- Move a user to Hold/Pending and Reject; confirm login access is blocked.
+- Pause and Activate a user; confirm Access pill changes.
+- Remove a test employee and confirm assigned accounts return to unassigned.
+- Confirm action buttons are compact and success/error feedback appears above the table.
+
+
+CLIENT_PORTAL_LEDGER_SCHEMA_FIX_R7:
+- Run RUN_THIS_CLIENT_PORTAL_LEDGER_SCHEMA_FIX_R7.sql after R5/R6.
+- Log in as an approved client.
+- Confirm no payment_type column error appears.
+- Confirm assigned portfolios, account totals, recent payments, and performance summary load.
+
+
+CLIENT REMITTANCE + AGENCY FEE ACCOUNTING R8 (DEMO):
+- Run RUN_THIS_CLIENT_REMITTANCE_AGENCY_FEE_R8.sql in the matching DEMO Supabase project.
+- Admin opens Remit, chooses client + assigned portfolio, saves agency/processor fee schedule, and previews a period.
+- Preview must exclude ledger payments already locked into a non-void batch.
+- Create Draft, Approve to publish to client, Mark Paid with payment reference, or Void to release payments.
+- Confirm gross collections, reversals, agency fee, processor fees, adjustment, and net remittance calculations.
+- Confirm processor fee entered in Payment Ledger is used; otherwise configured percentage/fixed fee is used.
+- Client Portal shows only Approved/Paid remittance statements for that client and supports branded PDF/CSV downloads.
+- Confirm clients cannot see other clients, draft batches, internal notes, or admin controls.
+
+
+SILENT LOGGED-OUT STARTUP FIX R8N1:
+- Opening or refreshing the login page while logged out must not show a 'Could not load accounts / Not logged in' alert.
+- Account-loading errors still display after an authenticated login.
+- Only one startup boot sequence should run.
+
+
+DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
+- Run RUN_THIS_DEMO_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2.sql in DEMO Supabase only.
+- Logged out page shows Admin Demo and Employee Demo one-click buttons.
+- Admin Demo automatically enters as demo-admin@copilotdemo.com.
+- Employee Demo automatically enters as demo-employee@copilotdemo.com.
+- No Access Type dropdown or public Request Access button appears in DEMO.
+- Public Demo Admin clicking Import sees the Full Version upgrade dialog and no file picker/import occurs.
+- Public Demo Admin clicking Add Account, Clear, Rollback, or Hard Delete sees the upgrade dialog.
+- Direct database inserts/deletes by either public demo identity are rejected with DEMO_UPGRADE_REQUIRED.
+- Private owner admin login remains able to maintain DEMO data.
+- LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.
+
+
+DEMO IN-APP PRICING HUB R8N5:
+- Logged-out DEMO page shows only the one-click Admin Demo and Employee Demo access; no View Pricing, Pricing PDF, or Contact pricing actions appear.
+- After Admin or Employee Demo login, a highlighted Private Agency Licensing banner appears at the top of the account workspace.
+- Clicking the banner opens the internal full-page Pricing & Monthly Licensing screen.
+- Pricing displays Starter, Agency, Agency Plus, and Enterprise; Agency remains marked Most Popular.
+- Each plan Request button opens an addressed licensing email with the selected plan.
+- Pricing PDF download is available from the internal pricing page only.
+- The public-demo Full Version upgrade dialog includes View Pricing and opens the internal pricing screen.
+- Back to App returns to the active demo workspace.
+- LIVE remains unchanged and contains no public pricing or embedded demo credentials.
+
+DEMO_IN_APP_PRICING_HUB_R8N5:
+- Login through Admin Demo and Employee Demo.
+- Confirm the highlighted Private Agency Licensing banner appears inside the app.
+- Click View Pricing & Licensing and confirm the full pricing page opens.
+- Click Back to App and confirm the active demo workspace returns.
+- Confirm the public login screen contains no pricing buttons.
+
+DEMO LICENSING LEAD FORM R8N7:
+- Login through Admin Demo and Employee Demo separately.
+- Open the Private Agency Licensing banner.
+- Confirm each Request Access button opens the form with the correct plan and price.
+- Confirm Contact Sales opens the form.
+- Complete all required fields and submit on the deployed Netlify site.
+- Confirm the success screen appears.
+- Confirm the submission appears under Netlify Forms -> co-pilot-licensing-inquiry.
+- Confirm the configured email notification reaches datamarkethouse@gmail.com.
+
+- Confirm the deployed HTML contains NETLIFY_STATIC_FORM_BLUEPRINT_R8N7 and Netlify detects co-pilot-licensing-inquiry under Active forms.
