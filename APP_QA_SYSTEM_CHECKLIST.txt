@@ -99,3 +99,14 @@ DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
 - Direct database inserts/deletes by either public demo identity are rejected with DEMO_UPGRADE_REQUIRED.
 - Private owner admin login remains able to maintain DEMO data.
 - LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.
+
+
+DEMO PRICING & LICENSING R8N3:
+- Logged-out DEMO page shows View Pricing, Pricing PDF, and Contact actions.
+- Pricing opens without requiring login and displays Starter, Agency, Agency Plus, and Enterprise plans.
+- Agency plan is marked Most Popular.
+- Each plan Request button opens an addressed licensing email with the selected plan.
+- Download Pricing PDF serves /Co_Pilot_Collections_Pricing_Guide.pdf.
+- After Admin or Employee Demo login, a Pricing button appears in the application top bar.
+- The public-demo upgrade dialog also includes View Pricing.
+- LIVE remains unchanged and contains no public pricing or embedded demo credentials.

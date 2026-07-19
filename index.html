@@ -10,7 +10,7 @@
 <!-- DOCUMENT_BRANDING_TYPED_ESIGN_R4_2026_07_18: brand logo/name on documents + company Created By + DocuSign-style typed signature chooser -->
 
 <head>
-<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N2: DEMO One-Click Login + Public Import Guard -->
+<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N3: DEMO One-Click Login + Public Import Guard + Pricing & Licensing -->
 <!-- DEMO_COMPLIANCE_GUARD_MARKER: compliance guard + call rules -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
@@ -12257,7 +12257,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   if(window.__cpcmSystemQaVersionLockLoaded) return;
   window.__cpcmSystemQaVersionLockLoaded = true;
   var BUILD_NAME = "Co Pilot Collections Manager — Stability QA / Version Lock";
-  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N2";
+  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N3";
   var EXPECTED_ENV = "DEMO";
   var EXPECTED_URL = "https://nixqpmgkmrzjsaqhqqew.supabase.co";
   var EXPECTED_KEY_PREFIX = "sb_publishable_g4D2rVDfqyGJLe1yhShBjQ";
@@ -13262,6 +13262,116 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   function init(){enhanceLogin();installGuards();applyRestrictions();setTimeout(()=>{enhanceLogin();installGuards();applyRestrictions()},900);setInterval(()=>{installGuards();applyRestrictions();removeAccessType()},1500)}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.CPCM_DEMO_PUBLIC_ACCESS_BUILD=BUILD;
+})();
+</script>
+
+
+<style id="cpcmDemoPricingStyles">
+/* DEMO_PRICING_LICENSING_R8N3 — DEMO ONLY */
+.landingShell{position:relative}
+.cpcmPricingLoginActions{position:absolute;top:20px;right:20px;z-index:5;display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.cpcmPricingLoginActions button,.cpcmPricingLoginActions a{height:34px;border-radius:9px;padding:0 11px;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:1000;text-decoration:none;cursor:pointer;border:1px solid rgba(255,255,255,.28);background:rgba(15,23,42,.38);color:#fff;backdrop-filter:blur(8px)}
+.cpcmPricingLoginActions button:hover,.cpcmPricingLoginActions a:hover{background:#fff;color:#1457ff}
+.cpcmPricingLoginActions .primary{background:#fff;color:#1457ff;border-color:#fff}
+.cpcmPricingTopBtn{background:#16a34a!important;color:#fff!important;border-color:#15803d!important}
+.cpcmPricingPage{position:fixed;inset:0;z-index:999998;background:#eef3f9;color:#0f172a;display:none;overflow:auto}
+.cpcmPricingPage.open{display:block}
+.cpcmPricingShell{max-width:1420px;margin:0 auto;padding:16px 18px 40px}
+.cpcmPricingHero{background:linear-gradient(135deg,#05225f,#0b45c6 62%,#1457ff);color:#fff;border-radius:20px;padding:19px 21px;box-shadow:0 14px 34px rgba(15,23,42,.2);display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:14px}
+.cpcmPricingBrand{display:flex;align-items:center;gap:12px}.cpcmPricingLogo{width:45px;height:45px;border-radius:13px;background:#fff;color:#1457ff;display:grid;place-items:center;font-weight:1000;font-size:25px;font-style:italic;box-shadow:0 9px 24px rgba(0,0,0,.2)}
+.cpcmPricingHero h1{font-size:25px;line-height:1.05;margin:0;letter-spacing:-.03em}.cpcmPricingHero p{font-size:12px;color:#dbeafe;margin:6px 0 0;line-height:1.45;max-width:720px;font-weight:750}
+.cpcmPricingHeroActions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.cpcmPricingHeroActions button,.cpcmPricingHeroActions a{height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.25);padding:0 12px;background:rgba(15,23,42,.34);color:#fff;text-decoration:none;font-size:11px;font-weight:1000;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}.cpcmPricingHeroActions .download{background:#16a34a;border-color:#16a34a}.cpcmPricingHeroActions .close{background:#fff;color:#1457ff;border-color:#fff}
+.cpcmPricingIntro{background:#fff;border:1px solid #dbe3ef;border-radius:15px;padding:13px 15px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 3px 12px rgba(15,23,42,.04)}
+.cpcmPricingIntro b{font-size:15px}.cpcmPricingIntro span{display:block;color:#64748b;font-size:11px;margin-top:3px;font-weight:750}.cpcmPricingIntroPill{border-radius:999px;background:#dcfce7;color:#166534;padding:6px 10px;font-size:10px;font-weight:1000;white-space:nowrap}
+.cpcmPricingGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;align-items:stretch}
+.cpcmPricingCard{background:#fff;border:1px solid #dbe3ef;border-radius:17px;padding:15px;box-shadow:0 5px 16px rgba(15,23,42,.05);display:flex;flex-direction:column;position:relative;overflow:hidden;min-width:0}
+.cpcmPricingCard:before{content:"";height:4px;position:absolute;left:0;right:0;top:0;background:#0ea5e9}.cpcmPricingCard.agency{border:2px solid #1457ff;box-shadow:0 10px 28px rgba(20,87,255,.14);transform:translateY(-3px)}.cpcmPricingCard.agency:before{background:#1457ff}.cpcmPricingCard.plus:before{background:#7c3aed}.cpcmPricingCard.enterprise:before{background:#334155}
+.cpcmPricingTag{align-self:flex-start;border-radius:999px;background:#e0f2fe;color:#075985;padding:5px 8px;font-size:9px;font-weight:1000;margin-bottom:10px}.cpcmPricingCard.agency .cpcmPricingTag{background:#1457ff;color:#fff}.cpcmPricingCard.plus .cpcmPricingTag{background:#ede9fe;color:#6d28d9}.cpcmPricingCard.enterprise .cpcmPricingTag{background:#e2e8f0;color:#334155}
+.cpcmPricingCard h2{font-size:18px;margin:0 0 4px}.cpcmPricingPrice{font-size:24px;line-height:1;font-weight:1000;color:#1457ff;letter-spacing:-.03em}.cpcmPricingSetup{font-size:11px;color:#64748b;font-weight:900;margin:5px 0 11px}.cpcmPricingCard ul{list-style:none;padding:0;margin:0;display:grid;gap:6px;flex:1}.cpcmPricingCard li{font-size:11px;color:#334155;line-height:1.3;font-weight:780;display:flex;gap:6px}.cpcmPricingCard li:before{content:"✓";color:#16a34a;font-weight:1000}
+.cpcmPricingRequest{height:39px;border-radius:10px;margin-top:13px;width:100%;justify-content:center;background:#1457ff;color:#fff;font-size:11px}.cpcmPricingCard.starter .cpcmPricingRequest{background:#0ea5e9}.cpcmPricingCard.plus .cpcmPricingRequest{background:#7c3aed}.cpcmPricingCard.enterprise .cpcmPricingRequest{background:#334155}
+.cpcmPricingLower{display:grid;grid-template-columns:1.25fr .75fr;gap:12px;margin-top:12px}.cpcmPricingPanel{background:#fff;border:1px solid #dbe3ef;border-radius:16px;padding:14px 15px;box-shadow:0 4px 14px rgba(15,23,42,.04)}.cpcmPricingPanel h3{font-size:15px;margin:0 0 9px}.cpcmPricingCompare{width:100%;border-collapse:collapse;font-size:10px}.cpcmPricingCompare th{background:#05225f;color:#fff;text-align:left;padding:7px}.cpcmPricingCompare td{border:1px solid #e2e8f0;padding:7px;color:#334155;font-weight:750}.cpcmPricingCompare tr:nth-child(even) td{background:#f8fbff}.cpcmPricingCompare th:not(:first-child),.cpcmPricingCompare td:not(:first-child){text-align:center}
+.cpcmFounding{background:#fffbeb;border:1px solid #fde68a;color:#78350f;border-radius:13px;padding:12px;margin-bottom:10px}.cpcmFounding b{display:block;font-size:14px}.cpcmFounding p{font-size:11px;line-height:1.45;margin:5px 0 0;font-weight:750}.cpcmPricingWhy{display:grid;gap:7px}.cpcmPricingWhy div{border:1px solid #e2e8f0;background:#f8fbff;border-radius:11px;padding:9px}.cpcmPricingWhy b{font-size:11px}.cpcmPricingWhy span{display:block;color:#64748b;font-size:10px;line-height:1.35;margin-top:3px;font-weight:750}.cpcmPricingFooter{text-align:center;color:#64748b;font-size:10px;font-weight:750;margin-top:13px;line-height:1.45}
+@media(max-width:1180px){.cpcmPricingGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.cpcmPricingCard.agency{transform:none}.cpcmPricingLower{grid-template-columns:1fr}}
+@media(max-width:720px){.cpcmPricingLoginActions{position:static;margin:0 0 10px;justify-content:flex-start}.cpcmPricingLoginActions button,.cpcmPricingLoginActions a{background:rgba(255,255,255,.12)}.cpcmPricingHero{display:block}.cpcmPricingHeroActions{justify-content:flex-start;margin-top:12px}.cpcmPricingGrid{grid-template-columns:1fr}.cpcmPricingIntro{display:block}.cpcmPricingIntroPill{display:inline-block;margin-top:8px}.cpcmPricingShell{padding:9px}.cpcmPricingCompareWrap{overflow:auto}}
+</style>
+
+<div id="cpcmPricingPage" class="cpcmPricingPage" aria-hidden="true">
+  <div class="cpcmPricingShell">
+    <section class="cpcmPricingHero">
+      <div class="cpcmPricingBrand">
+        <div class="cpcmPricingLogo">C</div>
+        <div><h1>Pricing & Monthly Licensing</h1><p>Choose a private agency installation with its own database, branded subdomain, users, portfolios, reports, documents, Client Portal, and remittance accounting.</p></div>
+      </div>
+      <div class="cpcmPricingHeroActions">
+        <a class="download" href="/Co_Pilot_Collections_Pricing_Guide.pdf" download>Download Pricing PDF</a>
+        <a href="mailto:datamarkethouse@gmail.com?subject=Co%20Pilot%20Collections%20Manager%20Licensing">Contact Sales</a>
+        <button class="close" onclick="closePricingPage()">Back to Demo</button>
+      </div>
+    </section>
+
+    <section class="cpcmPricingIntro">
+      <div><b>Simple plans for small and growing collection agencies</b><span>Every paying agency receives a separate private installation. The Agency plan is the recommended starting point for most teams.</span></div>
+      <div class="cpcmPricingIntroPill">Pricing effective July 2026</div>
+    </section>
+
+    <section class="cpcmPricingGrid">
+      <article class="cpcmPricingCard starter">
+        <div class="cpcmPricingTag">For small agencies</div><h2>Starter</h2><div class="cpcmPricingPrice">$299/month</div><div class="cpcmPricingSetup">$750 setup fee</div>
+        <ul><li>Up to 25,000 accounts</li><li>3 active staff users</li><li>1 administrator</li><li>2 client/portfolio owner logins</li><li>Private database and agency subdomain</li><li>Company branding and logo</li><li>Imports, payment plans and settlements</li><li>Reports, documents and receipts</li><li>Team Messenger and Client Portal</li><li>Remittance accounting</li><li>Standard email support</li></ul>
+        <button class="cpcmPricingRequest" onclick="requestPricingPlan('Starter','$299/month + $750 setup')">Request Starter Access</button>
+      </article>
+      <article class="cpcmPricingCard agency">
+        <div class="cpcmPricingTag">MOST POPULAR</div><h2>Agency</h2><div class="cpcmPricingPrice">$599/month</div><div class="cpcmPricingSetup">$1,500 setup fee</div>
+        <ul><li>Up to 100,000 accounts</li><li>10 active staff users</li><li>Up to 10 client logins</li><li>Everything in Starter</li><li>Priority onboarding</li><li>One initial portfolio import</li><li>Staff configuration</li><li>Branding setup</li><li>Remittance and fee schedule setup</li><li>Two training sessions</li><li>Standard custom document setup</li></ul>
+        <button class="cpcmPricingRequest" onclick="requestPricingPlan('Agency','$599/month + $1,500 setup')">Request Agency Access</button>
+      </article>
+      <article class="cpcmPricingCard plus">
+        <div class="cpcmPricingTag">For growing agencies</div><h2>Agency Plus</h2><div class="cpcmPricingPrice">$999/month</div><div class="cpcmPricingSetup">$2,500 setup fee</div>
+        <ul><li>Up to 250,000 accounts</li><li>20 active staff users</li><li>Up to 25 client logins</li><li>Everything in Agency</li><li>Multiple portfolio imports</li><li>Advanced onboarding</li><li>Priority support</li><li>Custom reports and document templates</li><li>Quarterly system review</li><li>Assisted data exports</li><li>Higher storage allowance</li></ul>
+        <button class="cpcmPricingRequest" onclick="requestPricingPlan('Agency Plus','$999/month + $2,500 setup')">Request Agency Plus</button>
+      </article>
+      <article class="cpcmPricingCard enterprise">
+        <div class="cpcmPricingTag">Custom scale</div><h2>Enterprise</h2><div class="cpcmPricingPrice">From $1,500/month</div><div class="cpcmPricingSetup">$5,000+ setup fee</div>
+        <ul><li>More than 250,000 accounts</li><li>More than 20 staff users</li><li>Multiple operating teams</li><li>Custom storage and compute</li><li>Custom reporting</li><li>Integration work</li><li>Enhanced backup options</li><li>Dedicated onboarding</li><li>Negotiated support agreement</li></ul>
+        <button class="cpcmPricingRequest" onclick="requestPricingPlan('Enterprise','Starting at $1,500/month + $5,000 setup')">Request Enterprise Quote</button>
+      </article>
+    </section>
+
+    <section class="cpcmPricingLower">
+      <div class="cpcmPricingPanel cpcmPricingCompareWrap"><h3>Plan comparison</h3><table class="cpcmPricingCompare"><thead><tr><th>Plan</th><th>Accounts</th><th>Staff</th><th>Client users</th><th>Setup</th></tr></thead><tbody><tr><td>Starter</td><td>25,000</td><td>3</td><td>2</td><td>$750</td></tr><tr><td>Agency</td><td>100,000</td><td>10</td><td>10</td><td>$1,500</td></tr><tr><td>Agency Plus</td><td>250,000</td><td>20</td><td>25</td><td>$2,500</td></tr><tr><td>Enterprise</td><td>250,000+</td><td>20+</td><td>Custom</td><td>$5,000+</td></tr></tbody></table></div>
+      <div class="cpcmPricingPanel"><div class="cpcmFounding"><b>Founding Agency Program</b><p>Limited introductory pricing may be available to the first five agencies that provide structured product feedback during their first year. Contact sales for eligibility and written terms.</p></div><div class="cpcmPricingWhy"><div><b>Private by design</b><span>Each agency receives its own Supabase project, deployment, users, data, and subdomain.</span></div><div><b>No shared employee logins</b><span>Named users preserve accountability, audit history, and collector reporting.</span></div><div><b>Guided onboarding</b><span>Setup fees cover provisioning, configuration, migration, testing, branding, and training.</span></div></div></div>
+    </section>
+    <div class="cpcmPricingFooter">Pricing is subject to final agreement, onboarding review, data volume, infrastructure usage, integrations, and requested customization. Setup fees are non-refundable once provisioning begins.</div>
+  </div>
+</div>
+
+<script id="cpcmDemoPricingScript">
+/* DEMO_PRICING_LICENSING_R8N3 — DEMO ONLY. NEVER COPY TO LIVE. */
+(function(){
+  'use strict';
+  const BUILD='DEMO_PRICING_LICENSING_R8N3';
+  const $=id=>document.getElementById(id);
+
+  window.openPricingPage=function(){let p=$('cpcmPricingPage');if(!p)return;p.classList.add('open');p.setAttribute('aria-hidden','false');p.scrollTop=0;try{history.replaceState(null,'','#pricing')}catch(e){}};
+  window.closePricingPage=function(){let p=$('cpcmPricingPage');if(!p)return;p.classList.remove('open');p.setAttribute('aria-hidden','true');try{if(location.hash==='#pricing')history.replaceState(null,'',location.pathname+location.search)}catch(e){}};
+  window.requestPricingPlan=function(plan,price){let subject='Co Pilot Collections Manager - '+plan+' licensing inquiry';let body='Hello,%0D%0A%0D%0AI am interested in the '+plan+' plan ('+price+').%0D%0A%0D%0AAgency name:%0D%0AContact name:%0D%0ABusiness email:%0D%0APhone:%0D%0AApproximate staff users:%0D%0AApproximate account volume:%0D%0A%0D%0APlease send licensing and onboarding details.';location.href='mailto:datamarkethouse@gmail.com?subject='+encodeURIComponent(subject)+'&body='+body};
+
+  function injectLoginLinks(){
+    let shell=document.querySelector('#loginScreen .landingShell');if(!shell||$('cpcmPricingLoginActions'))return;
+    let nav=document.createElement('div');nav.id='cpcmPricingLoginActions';nav.className='cpcmPricingLoginActions';nav.innerHTML='<button class="primary" type="button" onclick="openPricingPage()">View Pricing</button><a href="/Co_Pilot_Collections_Pricing_Guide.pdf" download>Pricing PDF</a><a href="mailto:datamarkethouse@gmail.com?subject=Co%20Pilot%20Collections%20Manager%20Demo">Contact</a>';shell.appendChild(nav);
+  }
+  function injectAppButton(){
+    let top=document.querySelector('.topActions');if(!top||$('cpcmPricingTopBtn'))return;
+    let btn=document.createElement('button');btn.id='cpcmPricingTopBtn';btn.className='cpcmPricingTopBtn';btn.textContent='Pricing';btn.onclick=window.openPricingPage;let help=top.querySelector('.helpBtn');top.insertBefore(btn,help||top.firstChild);
+  }
+  function injectUpgradeButton(){
+    let actions=document.querySelector('#demoUpgradeModal .demoUpgradeActions');if(!actions||$('cpcmUpgradePricingBtn'))return;
+    let btn=document.createElement('button');btn.id='cpcmUpgradePricingBtn';btn.className='continue';btn.textContent='View Pricing';btn.onclick=function(){if(typeof closeDemoUpgrade==='function')closeDemoUpgrade();openPricingPage()};let sales=actions.querySelector('.sales');actions.insertBefore(btn,sales||null);
+  }
+  function init(){injectLoginLinks();injectAppButton();injectUpgradeButton();if(location.hash==='#pricing')openPricingPage();setTimeout(()=>{injectLoginLinks();injectAppButton();injectUpgradeButton()},700);setInterval(()=>{injectLoginLinks();injectAppButton();injectUpgradeButton()},1800)}
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('cpcmPricingPage')?.classList.contains('open'))closePricingPage()});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  window.CPCM_DEMO_PRICING_BUILD=BUILD;
 })();
 </script>
 
