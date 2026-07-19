@@ -101,12 +101,13 @@ DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
 - LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.
 
 
-DEMO PRICING & LICENSING R8N3:
-- Logged-out DEMO page shows View Pricing, Pricing PDF, and Contact actions.
-- Pricing opens without requiring login and displays Starter, Agency, Agency Plus, and Enterprise plans.
-- Agency plan is marked Most Popular.
+DEMO IN-APP PRICING HUB R8N4:
+- Logged-out DEMO page shows only the one-click Admin Demo and Employee Demo access; no View Pricing, Pricing PDF, or Contact pricing actions appear.
+- After Admin or Employee Demo login, a highlighted Private Agency Licensing banner appears at the top of the account workspace.
+- Clicking the banner opens the internal full-page Pricing & Monthly Licensing screen.
+- Pricing displays Starter, Agency, Agency Plus, and Enterprise; Agency remains marked Most Popular.
 - Each plan Request button opens an addressed licensing email with the selected plan.
-- Download Pricing PDF serves /Co_Pilot_Collections_Pricing_Guide.pdf.
-- After Admin or Employee Demo login, a Pricing button appears in the application top bar.
-- The public-demo upgrade dialog also includes View Pricing.
+- Pricing PDF download is available from the internal pricing page only.
+- The public-demo Full Version upgrade dialog includes View Pricing and opens the internal pricing screen.
+- Back to App returns to the active demo workspace.
 - LIVE remains unchanged and contains no public pricing or embedded demo credentials.
