@@ -10,7 +10,7 @@
 <!-- DOCUMENT_BRANDING_TYPED_ESIGN_R4_2026_07_18: brand logo/name on documents + company Created By + DocuSign-style typed signature chooser -->
 
 <head>
-<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N9: DEMO Quick Actions Top / Contact Panel Removed -->
+<!-- STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N10: DEMO Admin + Employee Guided Tours -->
 <!-- DEMO_COMPLIANCE_GUARD_MARKER: compliance guard + call rules -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
 <!-- DEMO_REPORTING_CLEAN_PACKAGE_MARKER: clean demo package + admin reports -->
@@ -12283,7 +12283,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
   if(window.__cpcmSystemQaVersionLockLoaded) return;
   window.__cpcmSystemQaVersionLockLoaded = true;
   var BUILD_NAME = "Co Pilot Collections Manager — Stability QA / Version Lock";
-  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N9";
+  var BUILD_VERSION = "STABLE_SINGLE_FILE_QA_LOCK_2026_07_19_R8N10";
   var EXPECTED_ENV = "DEMO";
   var EXPECTED_URL = "https://nixqpmgkmrzjsaqhqqew.supabase.co";
   var EXPECTED_KEY_PREFIX = "sb_publishable_g4D2rVDfqyGJLe1yhShBjQ";
@@ -12338,6 +12338,7 @@ function exportContactIntelligenceCSV(){let calls=filteredContactCalls();let row
     checks.push(line('Build marker installed', !!window.__cpcmSystemQaVersionLockLoaded, BUILD_VERSION));
     checks.push(line('Client remittance module installed', !!window.CPCM_CLIENT_REMITTANCE_BUILD, window.CPCM_CLIENT_REMITTANCE_BUILD||'Missing R8 module'));
     checks.push(line('DEMO one-click login + import guard installed', !!window.CPCM_DEMO_PUBLIC_ACCESS_BUILD, window.CPCM_DEMO_PUBLIC_ACCESS_BUILD||'Missing R8N2 demo module'));
+    checks.push(line('DEMO Admin + Employee guided tours installed', !!window.CPCM_DEMO_GUIDED_TOUR_BUILD, window.CPCM_DEMO_GUIDED_TOUR_BUILD||'Missing R8N10 guided tour module'));
     checks.push(line('Document PDF engine loaded', !!(window.html2canvas&&window.jspdf&&window.jspdf.jsPDF), 'Local html2canvas + jsPDF'));
     checks.push(line('DocuSign-style typed signature controls loaded', !!(window.downloadCurrentDocumentPDF&&window.clearDocumentSignature&&window.applyTypedDocumentSignature&&window.selectDocumentSignatureStyle), 'Document Builder PDF + typed signature chooser'));
     return checks;
@@ -13498,6 +13499,171 @@ body.cpcmLeadOpen{overflow:hidden!important}
   document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if($('cpcmLeadModal')?.classList.contains('open'))closeLicensingForm();else if($('cpcmPricingPage')?.classList.contains('open'))closePricingPage()});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.CPCM_DEMO_PRICING_BUILD=BUILD;
+})();
+</script>
+
+
+<style id="cpcmDemoGuidedTourStyles">
+/* DEMO ROLE GUIDED TOURS — R8N10 — DEMO ONLY */
+#cpcmDemoTourBtn{background:linear-gradient(135deg,#0891b2,#2563eb)!important;color:#fff!important;border-color:rgba(255,255,255,.22)!important}
+.cpcmDemoTourLoginBadge{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:5px 8px;border-radius:999px;background:#e0f2fe;color:#075985;border:1px solid #bae6fd;font-size:9px;font-weight:1000;letter-spacing:.02em}
+#cpcmTourBlocker{position:fixed;inset:0;z-index:10000040;display:none;background:transparent;cursor:default}
+#cpcmTourBlocker.open{display:block}
+#cpcmTourSpotlight{position:fixed;z-index:10000041;display:none;border:3px solid #60a5fa;border-radius:15px;background:transparent;box-shadow:0 0 0 9999px rgba(4,15,39,.78),0 0 0 6px rgba(96,165,250,.24),0 18px 50px rgba(0,0,0,.35);pointer-events:none;transition:top .2s ease,left .2s ease,width .2s ease,height .2s ease}
+#cpcmTourSpotlight.open{display:block}
+#cpcmTourCard{position:fixed;z-index:10000045;width:min(390px,calc(100vw - 28px));display:none;background:#fff;color:#0f172a;border:1px solid #bfdbfe;border-radius:18px;box-shadow:0 24px 70px rgba(2,8,23,.42);overflow:hidden;font-family:Arial,Helvetica,sans-serif}
+#cpcmTourCard.open{display:block}
+.cpcmTourHead{background:linear-gradient(125deg,#05225f,#0b45c6 68%,#0891b2);color:#fff;padding:15px 16px 13px;position:relative}
+.cpcmTourRole{display:inline-flex;align-items:center;gap:5px;border:1px solid rgba(255,255,255,.24);background:rgba(255,255,255,.13);border-radius:999px;padding:4px 8px;font-size:9px;font-weight:1000;text-transform:uppercase;letter-spacing:.06em}
+.cpcmTourTitle{font-size:19px;font-weight:1000;line-height:1.15;margin-top:9px;letter-spacing:-.015em}.cpcmTourStep{font-size:10px;color:#bfdbfe;font-weight:900;margin-top:5px}
+.cpcmTourBody{padding:15px 16px 13px}.cpcmTourText{font-size:13px;line-height:1.52;color:#334155;font-weight:700}.cpcmTourTip{margin-top:11px;border:1px solid #dbeafe;background:#eff6ff;color:#1e3a8a;border-radius:11px;padding:9px 10px;font-size:11px;line-height:1.4;font-weight:800}
+.cpcmTourProgress{height:6px;border-radius:999px;background:#e2e8f0;overflow:hidden;margin-top:14px}.cpcmTourProgressFill{height:100%;width:0;background:linear-gradient(90deg,#2563eb,#06b6d4);border-radius:999px;transition:width .2s ease}
+.cpcmTourActions{display:flex;align-items:center;gap:8px;padding:0 16px 15px}.cpcmTourActions button{height:38px;border-radius:10px;padding:0 12px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-size:11px;font-weight:1000;cursor:pointer}.cpcmTourActions button:hover{transform:translateY(-1px)}.cpcmTourActions .skip{margin-right:auto;border-color:transparent;color:#64748b;background:transparent;padding-left:0}.cpcmTourActions .next{background:#1457ff;color:#fff;border-color:#1457ff}.cpcmTourActions .finish{background:#16a34a;color:#fff;border-color:#16a34a}.cpcmTourActions button:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.cpcmTourHelpCard{border:1px solid #99b8ff;background:linear-gradient(110deg,#eff6ff,#ecfeff);border-radius:14px;padding:12px;margin:0 0 13px;display:flex;align-items:center;justify-content:space-between;gap:12px}.cpcmTourHelpCard b{font-size:13px;color:#0f172a}.cpcmTourHelpCard span{display:block;color:#475569;font-size:10px;line-height:1.4;margin-top:4px;font-weight:750}.cpcmTourHelpCard button{height:37px;border:0;border-radius:10px;background:#1457ff;color:#fff;padding:0 12px;font-size:10px;font-weight:1000;white-space:nowrap;cursor:pointer}
+body.cpcmTourOpen{overflow:hidden!important}
+@media(max-width:700px){#cpcmTourCard{left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;width:auto!important;border-radius:16px}.cpcmTourHead{padding:13px 14px 11px}.cpcmTourTitle{font-size:17px}.cpcmTourBody{padding:13px 14px 11px}.cpcmTourActions{padding:0 14px 13px;flex-wrap:wrap}.cpcmTourActions .skip{width:100%;order:3;text-align:center;margin:0}.cpcmTourActions button:not(.skip){flex:1}.cpcmTourHelpCard{align-items:flex-start;flex-direction:column}.cpcmTourHelpCard button{width:100%}}
+</style>
+
+<script id="cpcmDemoGuidedTourScript">
+/* DEMO_ROLE_GUIDED_TOURS_R8N10 — DEMO ONLY. NEVER COPY TO LIVE. */
+(function(){
+  'use strict';
+  const BUILD='DEMO_ROLE_GUIDED_TOURS_R8N10';
+  const STORAGE_VERSION='v1';
+  const DEMO_EMAILS=['demo-admin@copilotdemo.com','demo-employee@copilotdemo.com'];
+  let active=false, activeRole='', stepIndex=0, currentTarget=null, autoAttempted=false, positionTimer=null;
+  const $=id=>document.getElementById(id);
+  const clamp=(n,min,max)=>Math.max(min,Math.min(max,n));
+  const steps={
+    admin:[
+      {target:['.topbar .brand','#appBrandName'],title:'Welcome to the Admin Demo',text:'This view gives agency leadership control over accounts, employees, compliance, payments, reporting, client access, documents, and daily operations.',tip:'The public demo uses sample data and protects production-only actions.'},
+      {target:['.sidebar','.queueList'],title:'Account Queue',text:'Search accounts by phone number, consumer name, SSN, address, status, or portfolio. Administrators can review the full queue and assignment flow.',tip:'Select any sample account to load its complete workspace.'},
+      {target:['.accountCard','.center'],title:'Consumer Account Workspace',text:'The center workspace keeps balances, creditor details, contact information, source fields, payment plans, phone numbers, dispositions, notes, and history together.',tip:'Collectors work one account at a time to reduce mistakes and keep activity organized.'},
+      {target:['.right .quickActions','.topActions'],title:'Quick Actions',text:'Use these shortcuts for promises, payment schedules, ledger entries, letters, callbacks, messages, call results, disputes, settlements, contact updates, and account documents.',tip:'Each action stays connected to the currently selected account.'},
+      {target:['button[onclick="openEmployeeAdminModal()"]','.topActions'],title:'Staff Management',text:'Approve employee access, activate or deactivate collectors, review roles, and manage the people who work inside the agency installation.',tip:'Staff seats are controlled by the agency’s selected licensing plan.'},
+      {target:['#clientPortalAdminBtn','#clientPortalAdminNav','.topActions'],title:'Client / Portfolio Owner Portal',text:'Create client access and assign only the portfolios each owner is authorized to view. Clients receive a separate, limited portal experience.',tip:'The portal can show accounts, payments, statements, and remittance information without exposing internal collector tools.'},
+      {target:['button[onclick="openComplianceGuard()"]','.complianceBanner'],title:'Compliance Guard',text:'Review call restrictions, disputes, consent, cease-and-desist indicators, contact windows, and other warnings before collection activity occurs.',tip:'Compliance status stays visible directly on the account workflow.'},
+      {target:['button[onclick="openReportsPageStable()"]','.navIcon[title="Admin Reports"]','.topActions'],title:'Reports and Management Visibility',text:'Open agency reports to review collector production, promises, payments, portfolio results, client accounting, remittance activity, and operational trends.',tip:'Administrators can use reports alongside scorecards, audit history, and monitoring tools.'},
+      {target:['button[onclick="openBrandingSettingsModal()"]','.navIcon[title="Brand Settings"]','.topActions'],title:'Private Agency Branding',text:'A licensed installation can use the agency’s own name, logo, document identity, private database, users, and branded subdomain.',tip:'Each customer installation is separated from the public demo and from other agencies.'},
+      {target:['#cpcmPricingBanner','button[onclick*="openPricingPage"]','.center'],title:'Pricing and Licensing',text:'Review Starter, Agency, Agency Plus, and Enterprise options, then submit a licensing request directly from the demo.',tip:'Choose Finish below to return to the app and continue exploring on your own.'}
+    ],
+    employee:[
+      {target:['.topbar .brand','#appBrandName'],title:'Welcome to the Employee Demo',text:'This view is designed for collectors working assigned accounts, documenting contacts, creating arrangements, scheduling follow-ups, and moving efficiently through the queue.',tip:'The public demo contains sample accounts so you can safely explore the workflow.'},
+      {target:['.sidebar','.queueList'],title:'Your Assigned Account Queue',text:'Search and select accounts from the queue. Filters help narrow work by portfolio or status, while the queue keeps collectors focused on assigned inventory.',tip:'The account currently selected here controls everything shown in the center workspace.'},
+      {target:['.centerProgress','.accountCard'],title:'Move Through Accounts',text:'Use the account counter and navigation controls to move backward or forward without leaving the collector workspace.',tip:'Save notes and outcomes before advancing to the next account.'},
+      {target:['.accountCard','.allFieldsTopPanel'],title:'Review the Consumer Record',text:'Confirm the consumer, balance, creditor, status, email, location, account number, and additional imported fields before making contact.',tip:'Accurate review helps prevent working the wrong account or using outdated information.'},
+      {target:['#complianceBanner','.phonePanel'],title:'Check Compliance Before Contact',text:'The Compliance Guard banner displays important call restrictions and account warnings before a collector launches a phone call or communication.',tip:'Always review visible restrictions before choosing a phone number.'},
+      {target:['.phonePanel','#phoneGrid'],title:'Phone Numbers and Call Intelligence',text:'Review available numbers, launch the connected phone application, refresh contact numbers, and open Call Intelligence for contact-attempt history.',tip:'The app records workflow activity while the actual call is handled by the device or connected calling provider.'},
+      {target:['.dispoPanel','#dispoGrid'],title:'Disposition and Call Outcome',text:'Choose the correct result after each attempt—such as no answer, voicemail, callback, dispute, promise to pay, settlement, or other agency-approved status.',tip:'Consistent dispositions improve reporting, queue strategy, and follow-up accuracy.'},
+      {target:['.notePanel','#agentNote'],title:'Agent Notes and Account History',text:'Document the conversation, agreed terms, dispute details, callback instructions, wrong-number information, or other meaningful account activity.',tip:'The history timeline provides an audit trail for future collectors and managers.'},
+      {target:['.right .quickActions','.topActions'],title:'Quick Actions',text:'Open promises, payment plans, ledger entries, letters, callbacks, call results, communications, disputes, settlements, contact updates, payoff quotes, and documents.',tip:'These tools remain linked to the account selected in your queue.'},
+      {target:['[data-nav="messages"]','.navRail'],title:'Team Messenger',text:'Use Team Messenger to communicate with administrators and coworkers without leaving the collections workspace.',tip:'Choose Finish below to continue exploring the Employee Demo independently.'}
+    ]
+  };
+
+  function visible(el){
+    if(!el||!el.isConnected)return false;
+    const s=getComputedStyle(el),r=el.getBoundingClientRect();
+    return s.display!=='none'&&s.visibility!=='hidden'&&Number(s.opacity||1)>0&&r.width>2&&r.height>2;
+  }
+  function role(){
+    try{
+      if(typeof currentUser!=='undefined'&&currentUser){
+        if(currentUser.isAdmin||String(currentUser.role||'').toLowerCase()==='admin')return 'admin';
+        if(String(currentUser.role||'').toLowerCase()==='employee')return 'employee';
+        const em=String(currentUser.email||'').toLowerCase();
+        if(em==='demo-admin@copilotdemo.com')return 'admin';
+        if(em==='demo-employee@copilotdemo.com')return 'employee';
+      }
+      const saved=String(sessionStorage.getItem('cpcm_demo_entry_role')||'').toLowerCase();
+      return saved==='admin'?'admin':saved==='employee'?'employee':'';
+    }catch(e){return ''}
+  }
+  function demoEmail(){try{return String((typeof currentUser!=='undefined'&&currentUser&&currentUser.email)||'').toLowerCase()}catch(e){return ''}}
+  function eligible(){
+    const r=role(),login=$('loginScreen');
+    if(!r||!login||login.classList.contains('open'))return false;
+    try{if(typeof window.isPublicDemoUser==='function'&&window.isPublicDemoUser())return true}catch(e){}
+    return DEMO_EMAILS.includes(demoEmail());
+  }
+  function storageKey(r){return 'cpcm_demo_guided_tour_'+STORAGE_VERSION+'_'+r}
+  function firstVisible(selectors){
+    for(const selector of selectors||[]){
+      let list=[];try{list=Array.from(document.querySelectorAll(selector))}catch(e){}
+      const found=list.find(visible);if(found)return found;
+    }
+    return document.querySelector('.topbar')||document.body;
+  }
+  function ensureUi(){
+    if(!$('cpcmTourBlocker')){
+      const blocker=document.createElement('div');blocker.id='cpcmTourBlocker';blocker.setAttribute('aria-hidden','true');blocker.addEventListener('click',e=>e.preventDefault());document.body.appendChild(blocker);
+      const spot=document.createElement('div');spot.id='cpcmTourSpotlight';spot.setAttribute('aria-hidden','true');document.body.appendChild(spot);
+      const card=document.createElement('section');card.id='cpcmTourCard';card.setAttribute('role','dialog');card.setAttribute('aria-modal','true');card.setAttribute('aria-labelledby','cpcmTourTitle');card.innerHTML='<div class="cpcmTourHead"><div class="cpcmTourRole" id="cpcmTourRole"></div><div class="cpcmTourTitle" id="cpcmTourTitle"></div><div class="cpcmTourStep" id="cpcmTourStep"></div></div><div class="cpcmTourBody"><div class="cpcmTourText" id="cpcmTourText"></div><div class="cpcmTourTip" id="cpcmTourTip"></div><div class="cpcmTourProgress"><div class="cpcmTourProgressFill" id="cpcmTourProgressFill"></div></div></div><div class="cpcmTourActions"><button type="button" class="skip" id="cpcmTourSkip">Skip Tour</button><button type="button" id="cpcmTourBack">Back</button><button type="button" class="next" id="cpcmTourNext">Next</button></div>';
+      document.body.appendChild(card);
+      $('cpcmTourSkip').onclick=()=>finish(true);$('cpcmTourBack').onclick=()=>show(stepIndex-1);$('cpcmTourNext').onclick=()=>stepIndex>=steps[activeRole].length-1?finish(false):show(stepIndex+1);
+    }
+  }
+  function closeObstructions(){
+    document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));
+    try{if(typeof window.closePricingPage==='function')window.closePricingPage()}catch(e){}
+    try{if(typeof window.closeLicensingForm==='function')window.closeLicensingForm()}catch(e){}
+    document.querySelectorAll('#cpcmSystemQaPage.open,#managerQaPage.open,#todayDashboardPage.open,#reportsPage.open').forEach(p=>p.classList.remove('open'));
+  }
+  function setOpen(open){
+    ensureUi();['cpcmTourBlocker','cpcmTourSpotlight','cpcmTourCard'].forEach(id=>$(id)?.classList.toggle('open',open));document.body.classList.toggle('cpcmTourOpen',open);
+  }
+  function position(){
+    if(!active||!currentTarget||!visible(currentTarget))return;
+    const r=currentTarget.getBoundingClientRect(),pad=8,spot=$('cpcmTourSpotlight'),card=$('cpcmTourCard');
+    const left=clamp(r.left-pad,8,window.innerWidth-20),top=clamp(r.top-pad,8,window.innerHeight-20),width=clamp(r.width+pad*2,24,window.innerWidth-left-8),height=clamp(r.height+pad*2,24,window.innerHeight-top-8);
+    Object.assign(spot.style,{left:left+'px',top:top+'px',width:width+'px',height:height+'px'});
+    if(window.innerWidth<=700){card.style.left='10px';card.style.top='auto';return}
+    const cw=Math.min(390,window.innerWidth-28),estimated=300,gap=14;
+    let cardLeft=clamp(r.left,14,window.innerWidth-cw-14),cardTop=r.bottom+gap;
+    if(cardTop+estimated>window.innerHeight-14)cardTop=r.top-estimated-gap;
+    if(cardTop<14){cardTop=14;cardLeft=r.right+gap;if(cardLeft+cw>window.innerWidth-14)cardLeft=14}
+    card.style.left=cardLeft+'px';card.style.top=clamp(cardTop,14,window.innerHeight-180)+'px';
+  }
+  function show(i){
+    if(!active)return;
+    const list=steps[activeRole]||[];stepIndex=clamp(i,0,list.length-1);const item=list[stepIndex];currentTarget=firstVisible(item.target);
+    try{currentTarget.scrollIntoView({behavior:'smooth',block:'center',inline:'center'})}catch(e){}
+    $('cpcmTourRole').textContent=(activeRole==='admin'?'👑 Admin Demo Tour':'🎧 Employee Demo Tour');$('cpcmTourTitle').textContent=item.title;$('cpcmTourStep').textContent='Step '+(stepIndex+1)+' of '+list.length;$('cpcmTourText').textContent=item.text;$('cpcmTourTip').textContent=item.tip||'Explore this area, then choose Next.';$('cpcmTourProgressFill').style.width=(((stepIndex+1)/list.length)*100)+'%';
+    $('cpcmTourBack').disabled=stepIndex===0;const next=$('cpcmTourNext');next.textContent=stepIndex===list.length-1?'Finish Tour':'Next';next.className=stepIndex===list.length-1?'finish':'next';
+    clearTimeout(positionTimer);positionTimer=setTimeout(position,240);
+  }
+  function start(requestedRole){
+    const r=requestedRole==='admin'||requestedRole==='employee'?requestedRole:role();if(!r||!steps[r])return false;
+    closeObstructions();active=true;activeRole=r;stepIndex=0;ensureUi();setOpen(true);show(0);return true;
+  }
+  function finish(skipped){
+    if(activeRole){try{localStorage.setItem(storageKey(activeRole),'1')}catch(e){}}
+    active=false;setOpen(false);currentTarget=null;
+    if(!skipped){const st=$('loginStatus');if(st)st.textContent='Guided tour complete — continue exploring the '+(activeRole==='admin'?'Admin':'Employee')+' Demo.'}
+  }
+  function injectTourButton(){
+    const top=document.querySelector('.topActions');if(top&&!$('cpcmDemoTourBtn')){const btn=document.createElement('button');btn.id='cpcmDemoTourBtn';btn.className='gray';btn.type='button';btn.textContent='Tour';btn.title='Take the guided product tour again';btn.onclick=()=>start(role());const help=Array.from(top.querySelectorAll('button')).find(b=>b.textContent.trim()==='Help');help?.insertAdjacentElement('afterend',btn)||top.insertBefore(btn,top.firstChild)}
+  }
+  function injectHelpCard(){
+    const body=document.querySelector('#helpModal .modalbody');if(body&&!$('cpcmTourHelpCard')){const box=document.createElement('div');box.id='cpcmTourHelpCard';box.className='cpcmTourHelpCard';box.innerHTML='<div><b>Guided Product Tour</b><span>Walk through the most important tools for your current demo role.</span></div><button type="button">Start Tour</button>';box.querySelector('button').onclick=()=>start(role());body.insertBefore(box,body.firstChild)}
+  }
+  function decorateLoginCards(){
+    document.querySelectorAll('.demoRoleCard').forEach(card=>{if(card.querySelector('.cpcmDemoTourLoginBadge'))return;const badge=document.createElement('span');badge.className='cpcmDemoTourLoginBadge';badge.textContent='✦ Guided tour starts automatically';card.appendChild(badge)});
+  }
+  function maybeAuto(){
+    injectTourButton();injectHelpCard();decorateLoginCards();
+    if(active||autoAttempted||!eligible())return;
+    const r=role();let done=false;try{done=localStorage.getItem(storageKey(r))==='1'}catch(e){}
+    autoAttempted=true;if(!done)setTimeout(()=>{if(eligible()&&!active)start(r)},1200);
+  }
+  window.startCpcmDemoTour=function(r){return start(r||role())};
+  window.restartCpcmDemoTour=function(){return start(role())};
+  window.resetCpcmDemoTours=function(){try{localStorage.removeItem(storageKey('admin'));localStorage.removeItem(storageKey('employee'))}catch(e){};return true};
+  window.addEventListener('resize',()=>{if(active)position()});window.addEventListener('scroll',()=>{if(active)position()},true);
+  document.addEventListener('keydown',e=>{if(!active)return;if(e.key==='Escape'){e.preventDefault();finish(true)}else if(e.key==='ArrowRight'){e.preventDefault();stepIndex>=steps[activeRole].length-1?finish(false):show(stepIndex+1)}else if(e.key==='ArrowLeft'){e.preventDefault();show(stepIndex-1)}});
+  function init(){ensureUi();injectTourButton();injectHelpCard();decorateLoginCards();setTimeout(maybeAuto,700);setInterval(maybeAuto,1200)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  window.CPCM_DEMO_GUIDED_TOUR_BUILD=BUILD;
 })();
 </script>
 

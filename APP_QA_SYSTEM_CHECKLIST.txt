@@ -138,3 +138,14 @@ QUICK ACTIONS TOP / CONTACT PANEL REMOVAL R8N9:
 - Confirm every Quick Action still opens its existing workflow.
 - Confirm clicking debtor phone numbers still launches the device or configured phone app and records the dial attempt.
 - Confirm Log Call Result, Schedule Callback, Call Intelligence, payments, documents, disputes, settlements, and contact updates still open.
+
+
+ADMIN + EMPLOYEE GUIDED TOURS R8N10:
+- Clear the tour keys with resetCpcmDemoTours() in the browser console before first-run testing.
+- Enter Admin Demo and confirm the Admin guided tour starts automatically.
+- Verify all 10 Admin steps highlight visible app areas and Back / Next / Skip / Finish work.
+- Confirm Tour appears beside Help and restarts the Admin tour.
+- Log out, enter Employee Demo, and confirm the Employee guided tour starts automatically.
+- Verify all 10 Employee steps highlight visible app areas and work on desktop and mobile widths.
+- Confirm the tour never starts for a private owner/support login.
+- Confirm no Supabase writes occur when opening, navigating, skipping, or finishing a tour.
