@@ -73,3 +73,79 @@ R8N2 DEMO ONE-CLICK ACCESS + IMPORT GUARD:
 - Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_DEMO_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2.sql in DEMO Supabase.
 - Confirm both Auth users exist with the passwords documented in that SQL file.
 - This feature is DEMO ONLY and must never be copied into LIVE.
+
+
+========================================================================
+PRICING, LICENSING, AND NETLIFY FORM NOTES
+========================================================================
+CO PILOT COLLECTIONS MANAGER - DEMO IN-APP PRICING + LICENSING LEAD FORM R8N7
+
+This DEMO-only release keeps pricing inside the authenticated demo experience:
+- No View Pricing, Pricing PDF, Contact, or sales buttons appear on the public login page
+- A highlighted Private Agency Licensing banner appears inside Admin Demo and Employee Demo
+- The banner opens the full pricing and licensing screen inside the app
+- Starter, Agency, Agency Plus, and Enterprise request buttons open a professional inquiry form
+- Contact Sales opens the same form with Contact Sales selected
+- The selected plan and listed price are filled automatically
+- The form collects agency name, contact name, business email, phone, staff size, account volume, client logins, current software, contact preference, best contact time, and notes
+- A honeypot field helps reduce automated spam
+- A static hidden Netlify form blueprint is included so Netlify detects the form during deployment
+- Successful submissions are stored by Netlify Forms and appear in the Netlify dashboard
+- The pricing PDF remains available from the internal pricing page
+- The Full Version upgrade dialog still links to the internal pricing page
+
+IMPORTANT - ONE-TIME NETLIFY EMAIL NOTIFICATION SETUP
+The form code is already built and named: co-pilot-licensing-inquiry
+Netlify requires the site owner to choose the notification email in the Netlify dashboard. This cannot be securely hard-coded into the public website.
+
+After deploying R8N7:
+1. Open the DEMO project in Netlify.
+2. Trigger a clear-cache production deploy, then open Forms and confirm "co-pilot-licensing-inquiry" appears under Active forms.
+3. Go to Project configuration -> Notifications -> Emails and webhooks.
+4. Under Form submission notifications, choose Add notification.
+5. Select Email notification.
+6. Choose the form "co-pilot-licensing-inquiry" or all form submissions.
+7. Enter: datamarkethouse@gmail.com
+8. Use a subject such as: New Co Pilot Licensing Inquiry
+9. Save the notification.
+10. Submit one test inquiry from the deployed demo and confirm it appears in Netlify Forms and in datamarkethouse@gmail.com.
+
+No Supabase SQL is required for this feature.
+Do not copy DEMO pricing/login scripts or demo credentials into LIVE.
+Pricing effective July 2026 and subject to final written agreement.
+
+
+========================================================================
+R8N11 DYNAMIC ACTIVITY + STATISTICS NOTES
+========================================================================
+CO PILOT COLLECTIONS MANAGER — DEMO R8N11
+
+DYNAMIC ACTIVITY + LIVE STATISTICS UPDATE
+
+WHAT CHANGED
+- Clicking any debtor phone number now saves one Call Attempt before the phone application opens.
+- The attempt immediately counts in Calls, Call Intelligence, Reports, Monitor, and Scorecards.
+- Saving a call outcome updates the same attempt instead of creating a second call.
+- Rapid double-click protection prevents duplicate attempts.
+- Account opens are logged as Account Opened activity with a 10-minute per-account dedupe window.
+- Open analytics screens automatically refresh after saved activity.
+- Open analytics screens poll every 12 seconds while visible so admin can see activity from other users.
+- Notes, statuses, payment promises, plans, settlements, payments, communications, and other database changes trigger a shared statistics refresh.
+
+REQUIRED SQL
+Run this file once in the matching DEMO Supabase project:
+SQL_TO_RUN_IN_SUPABASE/RUN_THIS_DYNAMIC_ACTIVITY_STATS_CALL_DEDUPE_R8N11.sql
+
+The SQL is safe to run more than once. It adds atomic call-attempt functions, call counters, dedupe keys, and supporting indexes.
+
+UPLOAD RULE
+This package is for DEMO only. Do not mix LIVE and DEMO files or Supabase credentials.
+
+SMOKE TEST
+1. Login as an employee.
+2. Open an account and click one phone number once.
+3. Confirm Call Intelligence shows 1 Call Attempt.
+4. Save No Answer or another outcome.
+5. Confirm the call total remains 1 and the result changes from Call Attempt to the saved outcome.
+6. Open Admin Monitor, Reports, and Scorecards and verify the same call is counted once.
+7. In a second browser, create activity and confirm an open admin analytics screen refreshes within about 12 seconds.

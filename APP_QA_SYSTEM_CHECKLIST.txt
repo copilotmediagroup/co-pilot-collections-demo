@@ -149,3 +149,13 @@ ADMIN + EMPLOYEE GUIDED TOURS R8N10:
 - Verify all 10 Employee steps highlight visible app areas and work on desktop and mobile widths.
 - Confirm the tour never starts for a private owner/support login.
 - Confirm no Supabase writes occur when opening, navigating, skipping, or finishing a tour.
+
+
+R8N11 DYNAMIC ACTIVITY + STATISTICS (DEMO)
+[ ] Run RUN_THIS_DYNAMIC_ACTIVITY_STATS_CALL_DEDUPE_R8N11.sql in the matching Supabase project
+[ ] One phone click creates one Call Attempt before the phone app opens
+[ ] Saving the outcome updates the same call row; total stays one
+[ ] Employee Monitor shows the call once, not attempt + result twice
+[ ] Call Intelligence, Reports, and Scorecards refresh after activity
+[ ] Account timeline shows Call Attempt and Call Result
+[ ] Second-browser activity appears on an open admin analytics screen within about 12 seconds
