@@ -1,16 +1,16 @@
 {
   "name": "co-pilot-collections-manager",
-  "version": "1.0.0",
+  "version": "1.0.19",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "npm run build:config && vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "start": "vite --host 0.0.0.0"
+    "start": "vite --host 0.0.0.0",
+    "build:config": "node scripts-generate-runtime-config.mjs"
   },
-  "dependencies": {},
   "devDependencies": {
-    "vite": "^5.4.20"
+    "vite": "^5.4.21"
   }
 }

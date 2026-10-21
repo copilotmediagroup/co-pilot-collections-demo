@@ -1,5 +1,5 @@
--- Co Pilot Collections Manager - Client Portal Ledger Schema Fix R7 (DEMO)
--- Run this in the matching DEMO Supabase SQL Editor after R5/R6.
+-- Co Pilot Collections Manager - Client Portal Ledger Schema Fix R7 (LIVE)
+-- Run this in the matching LIVE Supabase SQL Editor after R5/R6.
 -- Fixes: column l.payment_type does not exist.
 -- This is additive and preserves existing payment rows.
 

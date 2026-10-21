@@ -111,7 +111,7 @@ using (true);
 create policy "accounts_insert_admin"
 on accounts for insert
 to authenticated
-with check ((auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+with check ((auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy "accounts_update_authenticated"
 on accounts for update
@@ -122,7 +122,7 @@ with check (true);
 create policy "accounts_delete_admin"
 on accounts for delete
 to authenticated
-using ((auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using ((auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 drop policy if exists "notes_select_authenticated" on account_notes;
 drop policy if exists "notes_insert_authenticated" on account_notes;
@@ -252,6 +252,22 @@ alter table accounts add column if not exists phone10_note text;
 alter table accounts add column if not exists phone10_status text;
 alter table accounts add column if not exists raw_data jsonb;
 
+-- ACE PORTFOLIO NATIVE IMPORT FIELDS
+-- raw_data remains the lossless copy of every source CSV column.
+alter table accounts add column if not exists file_number text;
+alter table accounts add column if not exists paid_to_date numeric;
+alter table accounts add column if not exists charged_off_principal numeric;
+alter table accounts add column if not exists original_principal numeric;
+alter table accounts add column if not exists statute_of_lim_date text;
+alter table accounts add column if not exists loan_location text;
+alter table accounts add column if not exists brick_or_online text;
+alter table accounts add column if not exists custom2 text;
+alter table accounts add column if not exists custom3 text;
+alter table accounts add column if not exists custom57 text;
+alter table accounts add column if not exists custom58 text;
+alter table accounts add column if not exists custom60 text;
+create index if not exists idx_accounts_file_number on accounts(file_number);
+
 
 -- MAPPED FIELDS DISPLAY PROGRESS FIX
 -- Ensures raw_data exists so the app can display every uploaded/source row field.
@@ -360,7 +376,7 @@ create policy "accounts_select_authenticated"
 on accounts for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
 );
 
@@ -368,11 +384,11 @@ create policy "accounts_update_authenticated"
 on accounts for update
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
 );
 
@@ -398,7 +414,7 @@ create policy "app_users_select_admin_or_self"
 on app_users for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 );
 
@@ -407,18 +423,18 @@ on app_users for insert
 to authenticated
 with check (
   lower(email) = lower(auth.jwt() ->> 'email')
-  or lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  or lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
 );
 
 create policy "app_users_update_admin_or_self"
 on app_users for update
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 );
 
@@ -426,13 +442,13 @@ with check (
 -- This runs only when you execute this SQL in Supabase SQL Editor.
 insert into app_users (email, role, created_at, last_seen_at)
 select lower(email),
-       case when lower(email) = 'demo-admin@copilotdemo.com' then 'admin' else 'employee' end,
+       case when lower(email) = 'afinch2678@gmail.com' then 'admin' else 'employee' end,
        now(),
        now()
 from auth.users
 where email is not null
 on conflict (email) do update
-set role = case when excluded.email = 'demo-admin@copilotdemo.com' then 'admin' else app_users.role end,
+set role = case when excluded.email = 'afinch2678@gmail.com' then 'admin' else app_users.role end,
     last_seen_at = now();
 
 create index if not exists idx_app_users_email on app_users(lower(email));
@@ -471,7 +487,7 @@ create policy "app_users_select_admin_or_self_approval"
 on app_users for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 );
 
@@ -480,18 +496,18 @@ on app_users for insert
 to authenticated
 with check (
   lower(email) = lower(auth.jwt() ->> 'email')
-  or lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  or lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
 );
 
 create policy "app_users_update_admin_or_self_approval"
 on app_users for update
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 );
 
@@ -499,20 +515,20 @@ with check (
 -- Admin is auto-approved. Everyone else is pending until admin approves.
 insert into app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
 select lower(email),
-       case when lower(email) = 'demo-admin@copilotdemo.com' then 'admin' else 'employee' end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then 'approved' else 'pending' end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then true else false end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then true else false end,
+       case when lower(email) = 'afinch2678@gmail.com' then 'admin' else 'employee' end,
+       case when lower(email) = 'afinch2678@gmail.com' then 'approved' else 'pending' end,
+       case when lower(email) = 'afinch2678@gmail.com' then true else false end,
+       case when lower(email) = 'afinch2678@gmail.com' then true else false end,
        now(),
        now(),
        now()
 from auth.users
 where email is not null
 on conflict (email) do update
-set role = case when excluded.email = 'demo-admin@copilotdemo.com' then 'admin' else app_users.role end,
-    approval_status = case when excluded.email = 'demo-admin@copilotdemo.com' then 'approved' else coalesce(app_users.approval_status,'pending') end,
-    is_approved = case when excluded.email = 'demo-admin@copilotdemo.com' then true else coalesce(app_users.is_approved,false) end,
-    is_active = case when excluded.email = 'demo-admin@copilotdemo.com' then true else coalesce(app_users.is_active,false) end,
+set role = case when excluded.email = 'afinch2678@gmail.com' then 'admin' else app_users.role end,
+    approval_status = case when excluded.email = 'afinch2678@gmail.com' then 'approved' else coalesce(app_users.approval_status,'pending') end,
+    is_approved = case when excluded.email = 'afinch2678@gmail.com' then true else coalesce(app_users.is_approved,false) end,
+    is_active = case when excluded.email = 'afinch2678@gmail.com' then true else coalesce(app_users.is_active,false) end,
     updated_at = now();
 
 create index if not exists idx_app_users_email on app_users(lower(email));
@@ -522,8 +538,8 @@ create index if not exists idx_app_users_approval on app_users(approval_status, 
 -- Safety: keep employees locked until approved.
 update app_users
 set approval_status = coalesce(approval_status,'pending'),
-    is_approved = case when lower(email) = 'demo-admin@copilotdemo.com' then true else coalesce(is_approved,false) end,
-    is_active = case when lower(email) = 'demo-admin@copilotdemo.com' then true else (coalesce(is_approved,false) and coalesce(is_active,false)) end
+    is_approved = case when lower(email) = 'afinch2678@gmail.com' then true else coalesce(is_approved,false) end,
+    is_active = case when lower(email) = 'afinch2678@gmail.com' then true else (coalesce(is_approved,false) and coalesce(is_active,false)) end
 where true;
 
 
@@ -566,7 +582,7 @@ create policy "app_users_select_login_fix"
 on app_users for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(email) = lower(auth.jwt() ->> 'email')
 );
 
@@ -574,7 +590,7 @@ create policy "app_users_insert_self_pending_login_fix"
 on app_users for insert
 to authenticated
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or (
     lower(email) = lower(auth.jwt() ->> 'email')
     and coalesce(role,'employee') = 'employee'
@@ -587,16 +603,16 @@ with check (
 create policy "app_users_update_admin_only_login_fix"
 on app_users for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 -- Sync existing Supabase Auth users into app_users.
 insert into app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
 select lower(email),
-       case when lower(email) = 'demo-admin@copilotdemo.com' then 'admin' else 'employee' end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then 'approved' else 'pending' end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then true else false end,
-       case when lower(email) = 'demo-admin@copilotdemo.com' then true else false end,
+       case when lower(email) = 'afinch2678@gmail.com' then 'admin' else 'employee' end,
+       case when lower(email) = 'afinch2678@gmail.com' then 'approved' else 'pending' end,
+       case when lower(email) = 'afinch2678@gmail.com' then true else false end,
+       case when lower(email) = 'afinch2678@gmail.com' then true else false end,
        now(),
        now(),
        now()
@@ -607,7 +623,7 @@ on conflict (email) do nothing;
 -- Force admin approved.
 update app_users
 set role='admin', approval_status='approved', is_approved=true, is_active=true, updated_at=now()
-where lower(email)='demo-admin@copilotdemo.com';
+where lower(email)='afinch2678@gmail.com';
 
 -- Employees stay blocked unless admin approves them.
 update app_users
@@ -615,7 +631,7 @@ set approval_status=coalesce(approval_status,'pending'),
     is_approved=case when approval_status='approved' then true else false end,
     is_active=case when approval_status='approved' then coalesce(is_active,true) else false end,
     updated_at=now()
-where lower(email)<>'demo-admin@copilotdemo.com';
+where lower(email)<>'afinch2678@gmail.com';
 
 create index if not exists idx_app_users_email on app_users(lower(email));
 create index if not exists idx_app_users_approval on app_users(approval_status, is_approved, is_active);
@@ -645,7 +661,7 @@ set is_approved=false,
     is_active=false,
     updated_at=now()
 where approval_status='removed'
-  and lower(email) <> 'demo-admin@copilotdemo.com';
+  and lower(email) <> 'afinch2678@gmail.com';
 
 
 -- COLLECTIONS POWER FEATURES: callbacks, calls, disputes, docs, settlements, audit, permissions, import batches
@@ -771,36 +787,36 @@ drop policy if exists "role_permissions_admin" on role_permissions;
 drop policy if exists "import_batches_admin" on import_batches;
 
 create policy "follow_ups_access" on follow_ups for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email') or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'))
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email') or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email') or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'))
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email') or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'));
 
 create policy "call_results_access" on call_results for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = call_results.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = call_results.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = call_results.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = call_results.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
 
 create policy "disputes_access" on disputes for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = disputes.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = disputes.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = disputes.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = disputes.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
 
 create policy "settlements_access" on settlements for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = settlements.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = settlements.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = settlements.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = settlements.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
 
 create policy "account_docs_access" on account_docs for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = account_docs.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = account_docs.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = account_docs.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')))
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email') or exists (select 1 from accounts where accounts.id = account_docs.account_id and lower(coalesce(accounts.assigned_to_email,'')) = lower(auth.jwt() ->> 'email')));
 
 create policy "audit_logs_admin" on audit_logs for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'));
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com' or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email'));
 
 create policy "role_permissions_admin" on role_permissions for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy "import_batches_admin" on import_batches for all to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create index if not exists idx_follow_ups_due on follow_ups(due_date, status);
 create index if not exists idx_follow_ups_assigned on follow_ups(lower(assigned_to_email));
@@ -845,7 +861,7 @@ drop policy if exists "payments_ledger_access" on payments_ledger;
 
 create policy "payments_ledger_access" on payments_ledger for all to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
     select 1 from accounts
@@ -854,7 +870,7 @@ using (
   )
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
     select 1 from accounts
@@ -912,18 +928,18 @@ using (true);
 create policy "company_settings_admin_insert"
 on company_settings for insert
 to authenticated
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy "company_settings_admin_update"
 on company_settings for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy "company_settings_admin_delete"
 on company_settings for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create index if not exists idx_company_settings_updated_at on company_settings(updated_at);
 
@@ -960,7 +976,7 @@ returns boolean
 language sql
 stable
 as $$
-  select public.current_app_email() = 'demo-admin@copilotdemo.com';
+  select public.current_app_email() = 'afinch2678@gmail.com';
 $$;
 
 create or replace function public.is_approved_app_user()
@@ -1246,7 +1262,7 @@ using (public.is_app_admin());
 
 -- 10) Make sure your admin user is approved.
 insert into public.app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
-values ('demo-admin@copilotdemo.com','admin','approved',true,true,now(),now(),now())
+values ('afinch2678@gmail.com','admin','approved',true,true,now(),now(),now())
 on conflict (email) do update
 set role='admin', approval_status='approved', is_approved=true, is_active=true, updated_at=now(), last_seen_at=now();
 
@@ -1277,7 +1293,7 @@ declare
   c_import_batches int := 0;
   c_accounts int := 0;
 begin
-  if v_email not in ('demo-admin@copilotdemo.com') then
+  if v_email not in ('afinch2678@gmail.com') then
     raise exception 'Admin only';
   end if;
 
@@ -1393,7 +1409,7 @@ create policy follow_ups_select_approved
 on public.follow_ups for select
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
@@ -1407,7 +1423,7 @@ create policy follow_ups_insert_approved
 on public.follow_ups for insert
 to authenticated
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
   or exists (
@@ -1421,12 +1437,12 @@ create policy follow_ups_update_approved
 on public.follow_ups for update
 to authenticated
 using (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
 )
 with check (
-  lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com'
+  lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com'
   or lower(coalesce(assigned_to_email,'')) = lower(auth.jwt() ->> 'email')
   or lower(coalesce(created_by_email,'')) = lower(auth.jwt() ->> 'email')
 );
@@ -1434,7 +1450,7 @@ with check (
 create policy follow_ups_delete_admin
 on public.follow_ups for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 
 
@@ -1464,18 +1480,18 @@ using (auth.role() = 'authenticated');
 create policy company_settings_admin_insert
 on public.company_settings for insert
 to authenticated
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_update
 on public.company_settings for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_delete
 on public.company_settings for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 insert into public.company_settings(setting_key, setting_value, updated_by_email)
 values
@@ -1511,18 +1527,18 @@ using (auth.role() = 'authenticated');
 create policy company_settings_admin_insert
 on public.company_settings for insert
 to authenticated
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_update
 on public.company_settings for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_delete
 on public.company_settings for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 insert into public.company_settings(setting_key, setting_value, updated_by_email)
 values
@@ -1558,18 +1574,18 @@ using (auth.role() = 'authenticated');
 create policy company_settings_admin_insert
 on public.company_settings for insert
 to authenticated
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_update
 on public.company_settings for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy company_settings_admin_delete
 on public.company_settings for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 insert into public.company_settings(setting_key, setting_value, updated_by_email, updated_at)
 values
@@ -1683,13 +1699,13 @@ with check (auth.role() = 'authenticated');
 create policy payments_ledger_update_admin
 on public.payments_ledger for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy payments_ledger_delete_admin
 on public.payments_ledger for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy account_docs_select_authenticated
 on public.account_docs for select
@@ -1704,13 +1720,13 @@ with check (auth.role() = 'authenticated');
 create policy account_docs_update_admin
 on public.account_docs for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy account_docs_delete_admin
 on public.account_docs for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy call_results_select_authenticated
 on public.call_results for select
@@ -1725,13 +1741,13 @@ with check (auth.role() = 'authenticated');
 create policy call_results_update_admin
 on public.call_results for update
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com')
-with check (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com')
+with check (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 create policy call_results_delete_admin
 on public.call_results for delete
 to authenticated
-using (lower(auth.jwt() ->> 'email') = 'demo-admin@copilotdemo.com');
+using (lower(auth.jwt() ->> 'email') = 'afinch2678@gmail.com');
 
 -- Force Supabase/PostgREST schema cache refresh by touching comments.
 comment on table public.payments_ledger is 'Payment ledger table for Co Pilot Collections Manager';
@@ -1965,7 +1981,7 @@ create policy app_users_select_admin_or_self_final
 on public.app_users for select
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or lower(email) = lower(coalesce(auth.jwt() ->> 'email',''))
 );
 
@@ -1973,7 +1989,7 @@ create policy app_users_insert_self_pending_final
 on public.app_users for insert
 to authenticated
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or (
     lower(email) = lower(coalesce(auth.jwt() ->> 'email',''))
     and lower(coalesce(role,'employee')) = 'employee'
@@ -1986,20 +2002,20 @@ with check (
 create policy app_users_update_admin_final
 on public.app_users for update
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy app_users_delete_admin_final
 on public.app_users for delete
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 -- accounts
 create policy accounts_select_admin_or_assigned_final
 on public.accounts for select
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or (
     lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
     and exists (
@@ -2015,13 +2031,13 @@ using (
 create policy accounts_insert_admin_final
 on public.accounts for insert
 to authenticated
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy accounts_update_admin_or_assigned_final
 on public.accounts for update
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or (
     lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
     and exists (
@@ -2034,7 +2050,7 @@ using (
   )
 )
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or (
     lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
     and exists (
@@ -2050,7 +2066,7 @@ with check (
 create policy accounts_delete_admin_final
 on public.accounts for delete
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 -- Reusable inline account access condition for child tables:
 -- admin OR the row's account is assigned to the approved signed-in user.
@@ -2059,116 +2075,116 @@ create policy account_notes_select_final
 on public.account_notes for select
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
 );
 create policy account_notes_insert_final
 on public.account_notes for insert
 to authenticated
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
 );
 create policy account_notes_update_admin_final
 on public.account_notes for update
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy account_notes_delete_admin_final
 on public.account_notes for delete
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy activity_logs_select_final
 on public.activity_logs for select
 to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
 );
 create policy activity_logs_insert_final
 on public.activity_logs for insert
 to authenticated
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
 );
 create policy activity_logs_update_admin_final
 on public.activity_logs for update
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy activity_logs_delete_admin_final
 on public.activity_logs for delete
 to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 -- Payment plans
 create policy payment_plans_select_final
 on public.payment_plans for select to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plans_insert_final
 on public.payment_plans for insert to authenticated
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plans_update_final
 on public.payment_plans for update to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plans_delete_admin_final
 on public.payment_plans for delete to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy payment_plan_payments_select_final
 on public.payment_plan_payments for select to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plan_payments_insert_final
 on public.payment_plan_payments for insert to authenticated
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plan_payments_update_final
 on public.payment_plan_payments for update to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 create policy payment_plan_payments_delete_admin_final
 on public.payment_plan_payments for delete to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 -- Other account-child tables
 create policy payments_ledger_access_final
 on public.payments_ledger for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 
 create policy account_docs_access_final
 on public.account_docs for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 
 create policy call_results_access_final
 on public.call_results for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 
 create policy disputes_access_final
 on public.disputes for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 
 create policy settlements_access_final
 on public.settlements for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com') or exists (select 1 from public.accounts a where a.id = account_id));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com') or exists (select 1 from public.accounts a where a.id = account_id));
 
 -- Follow-ups can be accessed through account, assigned follow-up, or creator.
 create policy follow_ups_access_final
 on public.follow_ups for all to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
   or lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(created_by_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
 )
 with check (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (select 1 from public.accounts a where a.id = account_id)
   or lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(created_by_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
@@ -2177,13 +2193,13 @@ with check (
 -- Admin/dashboard/system tables
 create policy audit_logs_admin_final
 on public.audit_logs for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy role_permissions_select_approved_final
 on public.role_permissions for select to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (
     select 1 from public.app_users u
     where lower(u.email) = lower(coalesce(auth.jwt() ->> 'email',''))
@@ -2194,24 +2210,24 @@ using (
 );
 create policy role_permissions_insert_admin_final
 on public.role_permissions for insert to authenticated
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy role_permissions_update_admin_final
 on public.role_permissions for update to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy role_permissions_delete_admin_final
 on public.role_permissions for delete to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy import_batches_admin_final
 on public.import_batches for all to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 create policy company_settings_select_approved_final
 on public.company_settings for select to authenticated
 using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or exists (
     select 1 from public.app_users u
     where lower(u.email) = lower(coalesce(auth.jwt() ->> 'email',''))
@@ -2222,18 +2238,18 @@ using (
 );
 create policy company_settings_insert_admin_final
 on public.company_settings for insert to authenticated
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy company_settings_update_admin_final
 on public.company_settings for update to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'))
-with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'))
+with check (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 create policy company_settings_delete_admin_final
 on public.company_settings for delete to authenticated
-using (lower(coalesce(auth.jwt() ->> 'email','')) in ('demo-admin@copilotdemo.com'));
+using (lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com'));
 
 -- Make sure admin account is approved and active.
 insert into public.app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
-values ('demo-admin@copilotdemo.com','admin','approved',true,true,now(),now(),now())
+values ('afinch2678@gmail.com','admin','approved',true,true,now(),now(),now())
 on conflict (email) do update
 set role='admin',
     approval_status='approved',
@@ -2264,7 +2280,7 @@ declare
   c_import_batches int := 0;
   c_accounts int := 0;
 begin
-  if v_email not in ('demo-admin@copilotdemo.com') then
+  if v_email not in ('afinch2678@gmail.com') then
     raise exception 'Admin only';
   end if;
 
@@ -2352,43 +2368,38 @@ where setting_key='pdf_authorized_by_default'
 -- Schema cache nudge
 notify pgrst, 'reload schema';
 
+-- LIVE CLEANUP R8N20: removed legacy demo admin/employee seed block from this LIVE schema reference.
 
 
-
--- DEMO ADMIN / EMPLOYEE ACCOUNT SUPPORT
--- This prepares app_users rows for demo logins.
--- IMPORTANT: You still must create both users in Supabase Auth -> Users with these passwords:
--- demo-admin@copilotdemo.com / DemoAdmin123!
--- demo-employee@copilotdemo.com / DemoEmployee123!
-
-insert into public.app_users (email, role, approval_status, is_approved, is_active, created_at, updated_at, last_seen_at)
-values
-  ('demo-admin@copilotdemo.com','admin','approved',true,true,now(),now(),now()),
-  ('demo-admin@copilotdemo.com','admin','approved',true,true,now(),now(),now()),
-  ('demo-employee@copilotdemo.com','employee','approved',true,true,now(),now(),now())
-on conflict (email) do update
-set role=excluded.role,
-    approval_status='approved',
-    is_approved=true,
-    is_active=true,
-    updated_at=now(),
-    last_seen_at=now();
-
--- Optional: assign first 25 currently-unassigned accounts to demo employee for employee-view demo.
-with demo_accounts as (
-  select id
-  from public.accounts
-  where assigned_to_email is null or trim(coalesce(assigned_to_email,'')) = ''
-  order by created_at asc
-  limit 25
-)
-update public.accounts a
-set assigned_to_email='demo-employee@copilotdemo.com',
-    assigned_by_email='demo-admin@copilotdemo.com',
-    assigned_at=now(),
-    assignment_method='Demo Seed'
-from demo_accounts d
-where a.id=d.id;
-
-notify pgrst, 'reload schema';
-
+-- ADMIN CLEAR ACCOUNTS FK-SAFE OWNERSHIP
+-- Restrictive account references are cleared explicitly; CASCADE owns the remaining account children.
+create or replace function public.admin_clear_accounts()
+returns json
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_email text := lower(coalesce(auth.jwt() ->> 'email',''));
+  c_accounts int := 0;
+  c_payment_approval_requests int := 0;
+  c_nmi_transactions int := 0;
+begin
+  if v_email <> 'afinch2678@gmail.com' then raise exception 'Admin only'; end if;
+  delete from public.payment_approval_requests where account_id is not null;
+  get diagnostics c_payment_approval_requests = row_count;
+  delete from public.nmi_transactions where account_id is not null;
+  get diagnostics c_nmi_transactions = row_count;
+  update public.team_messages set account_id = null where account_id is not null;
+  delete from public.accounts;
+  get diagnostics c_accounts = row_count;
+  delete from public.import_batches;
+  return json_build_object('ok',true,'counts',json_build_object(
+    'accounts',c_accounts,
+    'payment_approval_requests',c_payment_approval_requests,
+    'nmi_transactions',c_nmi_transactions
+  ));
+end;
+$$;
+revoke all on function public.admin_clear_accounts() from public;
+grant execute on function public.admin_clear_accounts() to authenticated;

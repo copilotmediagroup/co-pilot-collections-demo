@@ -1,5 +1,5 @@
 -- NAME SAVE + ALL NOTES DELETE FIX
--- Run this in DEMO Supabase SQL Editor.
+-- Run this in LIVE Supabase SQL Editor.
 
 alter table public.app_users
   add column if not exists display_name text,
@@ -20,7 +20,7 @@ with check (lower(email)=lower(coalesce(auth.jwt()->>'email','')));
 drop policy if exists app_users_update_admin_display_names on public.app_users;
 create policy app_users_update_admin_display_names on public.app_users for update to authenticated
 using (
-  lower(coalesce(auth.jwt()->>'email',''))=lower('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt()->>'email',''))=lower('afinch2678@gmail.com')
   or exists (
     select 1 from public.app_users u
     where lower(u.email)=lower(coalesce(auth.jwt()->>'email',''))
@@ -34,7 +34,7 @@ with check (true);
 drop policy if exists account_notes_delete_admin_all_notes on public.account_notes;
 create policy account_notes_delete_admin_all_notes on public.account_notes for delete to authenticated
 using (
-  lower(coalesce(auth.jwt()->>'email',''))=lower('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt()->>'email',''))=lower('afinch2678@gmail.com')
   or exists (
     select 1 from public.app_users u
     where lower(u.email)=lower(coalesce(auth.jwt()->>'email',''))
@@ -47,7 +47,7 @@ using (
 drop policy if exists activity_logs_delete_admin_note_entries on public.activity_logs;
 create policy activity_logs_delete_admin_note_entries on public.activity_logs for delete to authenticated
 using (
-  lower(coalesce(auth.jwt()->>'email',''))=lower('demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt()->>'email',''))=lower('afinch2678@gmail.com')
   or exists (
     select 1 from public.app_users u
     where lower(u.email)=lower(coalesce(auth.jwt()->>'email',''))

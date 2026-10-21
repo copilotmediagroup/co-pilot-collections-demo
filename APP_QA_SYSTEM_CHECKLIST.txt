@@ -26,10 +26,13 @@ MESSENGER_PRESENCE_CONTACTS_FB_LAYOUT_FIX:
 - Message bubbles show sender name, timestamp/date, and seen status. Debtor/account attachments must not appear in Messenger.
 
 
-DEMO_STABLE_BOUNDARY_REPAIR_2026_07_18_R1:
-- Receipts/Letters print script boundary repaired.
-- Exact duplicate Messenger Names patch removed; one final override remains after presence layout logic.
-- DEMO environment lock preserved.
+DOCUMENT_PDF_SIGNATURE_2026_07_18_R3:
+- Direct Download PDF uses PDF libraries embedded directly in index.html.
+- Downloaded PDF is rendered from the right-side document Preview.
+- Mouse/touch electronic signature pad added above Authorized Representative.
+- Typed authorized-name signature option and Clear Signature added.
+- Existing Print / Save PDF fallback remains available.
+- Environment lock preserved.
 
 R3 PDF ENGINE CHECK:
 - Open System Check and confirm Document PDF engine loaded passes.
@@ -71,8 +74,8 @@ CLIENT_PORTAL_LEDGER_SCHEMA_FIX_R7:
 - Confirm assigned portfolios, account totals, recent payments, and performance summary load.
 
 
-CLIENT REMITTANCE + AGENCY FEE ACCOUNTING R8 (DEMO):
-- Run RUN_THIS_CLIENT_REMITTANCE_AGENCY_FEE_R8.sql in the matching DEMO Supabase project.
+CLIENT REMITTANCE + AGENCY FEE ACCOUNTING R8 (LIVE):
+- Run RUN_THIS_CLIENT_REMITTANCE_AGENCY_FEE_R8.sql in the matching LIVE Supabase project.
 - Admin opens Remit, chooses client + assigned portfolio, saves agency/processor fee schedule, and previews a period.
 - Preview must exclude ledger payments already locked into a non-void batch.
 - Create Draft, Approve to publish to client, Mark Paid with payment reference, or Void to release payments.
@@ -88,48 +91,12 @@ SILENT LOGGED-OUT STARTUP FIX R8N1:
 - Only one startup boot sequence should run.
 
 
-DEMO ONE-CLICK LOGIN + PUBLIC IMPORT GUARD R8N2:
-- Run RUN_THIS_DEMO_ONE_CLICK_LOGIN_IMPORT_GUARD_R8N2.sql in DEMO Supabase only.
-- Logged out page shows Admin Demo and Employee Demo one-click buttons.
-- Admin Demo automatically enters as demo-admin@copilotdemo.com.
-- Employee Demo automatically enters as demo-employee@copilotdemo.com.
-- No Access Type dropdown or public Request Access button appears in DEMO.
-- Public Demo Admin clicking Import sees the Full Version upgrade dialog and no file picker/import occurs.
-- Public Demo Admin clicking Add Account, Clear, Rollback, or Hard Delete sees the upgrade dialog.
-- Direct database inserts/deletes by either public demo identity are rejected with DEMO_UPGRADE_REQUIRED.
-- Private owner admin login remains able to maintain DEMO data.
-- LIVE package contains no demo emails, passwords, one-click buttons, or demo guard SQL.
-
-
-DEMO IN-APP PRICING HUB R8N5:
-- Logged-out DEMO page shows only the one-click Admin Demo and Employee Demo access; no View Pricing, Pricing PDF, or Contact pricing actions appear.
-- After Admin or Employee Demo login, a highlighted Private Agency Licensing banner appears at the top of the account workspace.
-- Clicking the banner opens the internal full-page Pricing & Monthly Licensing screen.
-- Pricing displays Starter, Agency, Agency Plus, and Enterprise; Agency remains marked Most Popular.
-- Each plan Request button opens an addressed licensing email with the selected plan.
-- Pricing PDF download is available from the internal pricing page only.
-- The public-demo Full Version upgrade dialog includes View Pricing and opens the internal pricing screen.
-- Back to App returns to the active demo workspace.
-- LIVE remains unchanged and contains no public pricing or embedded demo credentials.
-
-DEMO_IN_APP_PRICING_HUB_R8N5:
-- Login through Admin Demo and Employee Demo.
-- Confirm the highlighted Private Agency Licensing banner appears inside the app.
-- Click View Pricing & Licensing and confirm the full pricing page opens.
-- Click Back to App and confirm the active demo workspace returns.
-- Confirm the public login screen contains no pricing buttons.
-
-DEMO LICENSING LEAD FORM R8N7:
-- Login through Admin Demo and Employee Demo separately.
-- Open the Private Agency Licensing banner.
-- Confirm each Request Access button opens the form with the correct plan and price.
-- Confirm Contact Sales opens the form.
-- Complete all required fields and submit on the deployed Netlify site.
-- Confirm the success screen appears.
-- Confirm the submission appears under Netlify Forms -> co-pilot-licensing-inquiry.
-- Confirm the configured email notification reaches datamarkethouse@gmail.com.
-
-- Confirm the deployed HTML contains NETLIFY_STATIC_FORM_BLUEPRINT_R8N7 and Netlify detects co-pilot-licensing-inquiry under Active forms.
+LIVE DEMO-ACCESS EXCLUSION R8N2:
+- Login remains normal email/password with Access Type for new requests.
+- No one-click Admin Demo or Employee Demo buttons appear.
+- No demo emails or passwords exist in index.html.
+- Import and Add Account remain available to authorized LIVE admins.
+- No DEMO guard SQL is included.
 
 
 QUICK ACTIONS TOP / CONTACT PANEL REMOVAL R8N9:
@@ -140,18 +107,7 @@ QUICK ACTIONS TOP / CONTACT PANEL REMOVAL R8N9:
 - Confirm Log Call Result, Schedule Callback, Call Intelligence, payments, documents, disputes, settlements, and contact updates still open.
 
 
-ADMIN + EMPLOYEE GUIDED TOURS R8N10:
-- Clear the tour keys with resetCpcmDemoTours() in the browser console before first-run testing.
-- Enter Admin Demo and confirm the Admin guided tour starts automatically.
-- Verify all 10 Admin steps highlight visible app areas and Back / Next / Skip / Finish work.
-- Confirm Tour appears beside Help and restarts the Admin tour.
-- Log out, enter Employee Demo, and confirm the Employee guided tour starts automatically.
-- Verify all 10 Employee steps highlight visible app areas and work on desktop and mobile widths.
-- Confirm the tour never starts for a private owner/support login.
-- Confirm no Supabase writes occur when opening, navigating, skipping, or finishing a tour.
-
-
-R8N11 DYNAMIC ACTIVITY + STATISTICS (DEMO)
+R8N11 DYNAMIC ACTIVITY + STATISTICS (LIVE)
 [ ] Run RUN_THIS_DYNAMIC_ACTIVITY_STATS_CALL_DEDUPE_R8N11.sql in the matching Supabase project
 [ ] One phone click creates one Call Attempt before the phone app opens
 [ ] Saving the outcome updates the same call row; total stays one
@@ -159,3 +115,25 @@ R8N11 DYNAMIC ACTIVITY + STATISTICS (DEMO)
 [ ] Call Intelligence, Reports, and Scorecards refresh after activity
 [ ] Account timeline shows Call Attempt and Call Result
 [ ] Second-browser activity appears on an open admin analytics screen within about 12 seconds
+
+
+LIVE NMI PHASE 1 R8N12
+[ ] Revoke the private NMI key that was previously exposed and create a replacement
+[ ] Run RUN_THIS_NMI_PHASE1_LIVE_R8N12.sql in LIVE Supabase
+[ ] Paste only the public tokenization key into public/nmi-config.js
+[ ] Deploy nmi-payments and nmi-webhook Edge Functions to project bwvufgzbkaymffwxuuzr
+[ ] Add NMI_PRIVATE_API_KEY in Supabase Edge Function Secrets
+[ ] Create the NMI webhook and add NMI_WEBHOOK_SIGNING_KEY in Supabase Secrets
+[ ] Secure Card Payment opens NMI-hosted card fields
+[ ] Approved payment creates exactly one ledger payment and reduces balance once
+[ ] Declined payment creates no completed ledger payment and does not reduce balance
+[ ] Double-clicking Process Payment cannot produce duplicate charges
+[ ] Existing payment plan receives the approved payment against oldest unpaid installments
+[ ] Account history, Payments Dashboard, Reports, Scorecards, remittance, and receipt data refresh
+[ ] Employee cannot process a payment on an account assigned to another employee
+[ ] Client Portal user cannot access staff-entered card processing
+[ ] Only admin sees and can use NMI Void and Refund controls
+[ ] Approved void/refund creates a reversal ledger row and adds amount back to account balance
+[ ] NMI webhook rejects missing/invalid signatures
+[ ] External NMI refund/void not initiated in Co Pilot is marked for manual review, not silently applied
+[ ] No private key or full card/CVV appears in source, browser storage, database, logs, receipts, or GitHub

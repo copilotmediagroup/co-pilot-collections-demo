@@ -1,0 +1,32 @@
+[functions.nmi-payments]
+verify_jwt = false
+
+[functions.nmi-webhook]
+verify_jwt = false
+
+[functions.voice-broadcast]
+verify_jwt = false
+
+[functions.voice-broadcast-webhook]
+verify_jwt = false
+
+[functions.dialer-gateway]
+verify_jwt = false
+
+[functions.bland-ai]
+verify_jwt = false
+
+[functions.bland-call-status]
+verify_jwt = false
+
+[functions.bland-test-status]
+verify_jwt = false
+
+[functions.bland-verify-identity]
+verify_jwt = false
+
+[functions.bland-verified-context]
+verify_jwt = false
+
+[functions.bland-conversation-outcome]
+verify_jwt = false

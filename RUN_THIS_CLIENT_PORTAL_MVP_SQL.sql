@@ -1,5 +1,5 @@
--- Co Pilot Collections Manager - Client / Portfolio Owner Portal MVP R7 (DEMO)
--- Run in the matching DEMO Supabase SQL Editor before uploading/testing the R7 ZIP.
+-- Co Pilot Collections Manager - Client / Portfolio Owner Portal MVP R7 (LIVE)
+-- Run in the matching LIVE Supabase SQL Editor before uploading/testing the R7 ZIP.
 -- This SQL adds client-role profile fields, secure portfolio assignment, and client-safe reporting RPCs.
 
 alter table public.app_users add column if not exists full_name text;

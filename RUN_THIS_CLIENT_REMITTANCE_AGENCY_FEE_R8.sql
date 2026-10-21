@@ -1,5 +1,5 @@
--- Co Pilot Collections Manager - Client Remittance + Agency Fee Accounting R8 (DEMO)
--- Run in the matching DEMO Supabase SQL Editor after the Client Portal R7 SQL.
+-- Co Pilot Collections Manager - Client Remittance + Agency Fee Accounting R8 (LIVE)
+-- Run in the matching LIVE Supabase SQL Editor after the Client Portal R7 SQL.
 -- Additive migration: preserves all existing accounts, payments, client assignments, and documents.
 
 -- Capture the actual processor charge on an individual ledger payment when known.

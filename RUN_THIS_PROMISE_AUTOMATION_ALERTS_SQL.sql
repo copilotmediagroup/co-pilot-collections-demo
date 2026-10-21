@@ -50,19 +50,19 @@ drop policy if exists collector_alerts_update on public.collector_alerts;
 drop policy if exists collector_alerts_delete on public.collector_alerts;
 
 create policy collector_alerts_select on public.collector_alerts for select to authenticated using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(created_by_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or exists (select 1 from public.accounts a where a.id = account_id and lower(coalesce(a.assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email','')))
 );
 create policy collector_alerts_insert on public.collector_alerts for insert to authenticated with check (auth.role() = 'authenticated');
 create policy collector_alerts_update on public.collector_alerts for update to authenticated using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
   or lower(coalesce(assigned_to_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
   or lower(coalesce(created_by_email,'')) = lower(coalesce(auth.jwt() ->> 'email',''))
 ) with check (auth.role() = 'authenticated');
 create policy collector_alerts_delete on public.collector_alerts for delete to authenticated using (
-  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com','demo-admin@copilotdemo.com')
+  lower(coalesce(auth.jwt() ->> 'email','')) in ('afinch2678@gmail.com')
 );
 
 notify pgrst, 'reload schema';

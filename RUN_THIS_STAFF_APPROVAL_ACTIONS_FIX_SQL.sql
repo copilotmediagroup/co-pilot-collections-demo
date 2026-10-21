@@ -1,5 +1,5 @@
--- Co Pilot Collections Manager — Staff Approval Actions Fix R6 (DEMO)
--- Run this AFTER RUN_THIS_CLIENT_PORTAL_MVP_SQL.sql in the matching DEMO Supabase project.
+-- Co Pilot Collections Manager — Staff Approval Actions Fix R6 (LIVE)
+-- Run this AFTER RUN_THIS_CLIENT_PORTAL_MVP_SQL.sql in the matching LIVE Supabase project.
 -- Fixes Approve / Pending / Reject / Activate / Pause / Remove by using an admin-only SECURITY DEFINER RPC.
 
 alter table public.app_users add column if not exists removed_at timestamptz;

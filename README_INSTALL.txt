@@ -1,44 +1,104 @@
-Co Pilot Collections Manager - DEMO Package
+Co Pilot Collections Manager - LIVE Source of Truth + Messenger Cleanup R8N20
 
-Repo target: co-pilot-collections-demo
-Supabase project: https://nixqpmgkmrzjsaqhqqew.supabase.co
+Upload/use this repository only for GitHub repo: co-pilot-collections-live
+Supabase project locked to: https://bwvufgzbkaymffwxuuzr.supabase.co
 
-This DEMO package includes the clean reporting upgrade plus the existing chat/online-status/payment-desk system.
-
-Included upgrade:
-- Admin Reports modal
-- Collected dollars today / week / month
-- Promises created, promises kept, broken promises
-- Collector ranking
-- Liquidation rate
-- Contact rate and right-party-contact rate
-- Portfolio performance
-- Employee activity
-- CSV export
-- Print / Save PDF report
-
-Run in Bolt:
+Run in Bolt terminal:
 npm install
 npm run dev
 
-Important:
-- This package is for DEMO only.
-- Do not upload this ZIP to the LIVE repo.
-- Config URLs use the base Supabase URL only, no /rest/v1/.
+SQL required before testing Messenger names/staff directory:
+RUN_THIS_MESSENGER_STAFF_NAMES_SQL.sql
+
+R8N20 cleanup:
+- Removed DEMO setup SQL/files from LIVE repo.
+- Removed stale phase-2 main.js/styles.css split files.
+- Removed old attached-account Messenger patch block.
+- Messenger now stays staff/admin only: staff name, message body, date/time, Seen status.
+- System Check version updated to LIVE_SOURCE_OF_TRUTH_MESSENGER_CLEANUP_R8N20.
+- Active source of truth is index.html.
+
+--- Previous README notes kept below ---
+
+Co Pilot Collections Manager - LIVE Production Stability Refactor Phase 1
+
+Upload this ZIP only to GitHub repo: co-pilot-collections-live
+Supabase project locked to: https://bwvufgzbkaymffwxuuzr.supabase.co
+
+Run in Bolt terminal:
+npm install
+npm run dev
+
+No new SQL is required for this stability update.
+
+PRODUCTION STABILITY REFACTOR PHASE 1
+- Built from the latest Manager QA / Collector Scorecards package.
+- Removed the legacy Admin Reports modal that caused modal stacking and delayed behavior.
+- Removed the old Reports modal loading patch and old Reports handler bundle.
+- Kept the stable full-page Reports screen.
+- Added a Reports refresh lock so repeated clicks cannot start multiple report loads at the same time.
+- Added a central lightweight stability helper for admin detection and overlay cleanup.
+- Preserved Payment Plan admin edit/delete controls.
+- Preserved Cleanup, Communications, Import History, Settlement Workflow, Receipts/Docs, Tickler, and Scorecards.
+- LIVE package contains no demo setup files or demo login/role override code.
+
+Smoke test after upload:
+1. App loads without freezing.
+2. Login works.
+3. Account queue opens.
+4. Notes save.
+5. Payment plan create works.
+6. Admin edit/delete payment plan works.
+7. Reports opens as a full page and Back to Queue works.
+8. Compliance opens without stacking behind Reports.
+9. Chat/online status still works.
+
+--- Previous README notes kept below ---
+
+Co Pilot Collections Manager - LIVE Import History + Rollback
+
+Upload this ZIP only to GitHub repo: co-pilot-collections-live
+Supabase project locked to: https://bwvufgzbkaymffwxuuzr.supabase.co
+
+Run in Bolt terminal:
+npm install
+npm run dev
+
+No new SQL is required for this update if you already ran the prior CRM SQL files. Import History uses account raw_data batch tags plus local browser metadata, and can infer legacy imports by portfolio.
+
+New feature:
+- Admin-only Imports button
+- Import History + Rollback full page
+- New CSV uploads get automatic batch IDs
+- Batch summary: rows, skipped, missing phone, missing SSN, missing DOB, duplicates, total balance
+- View all accounts from an import batch
+- Export import history CSV
+- Export selected batch accounts CSV
+- Rollback/hide batch by marking accounts Rolled Back
+- Hard delete batch with DELETE confirmation
 
 
-COMPLIANCE GUARD UPDATE:
-- Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_COMPLIANCE_GUARD_SQL.sql in the matching DEMO Supabase project.
-- The app now adds Compliance Guard / Call Rules: DNC, cease & desist, disputed/frozen, bankruptcy, deceased, attorney represented, wrong number, manager review, consent, call-window checks, daily call limit warnings, and admin override logging.
-
-PROMISE AUTOMATION + COLLECTOR ALERTS UPDATE
-1. Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_PROMISE_AUTOMATION_AND_CALL_INTELLIGENCE_SQL.sql in the matching DEMO Supabase project.
-2. Upload this ZIP only to the DEMO GitHub repo.
-3. In the app, use Alerts or Broken to auto-detect missed promises, create follow-ups, update broken promise status, and export collector alerts.
+Settlement Workflow + Approval build: LIVE_SETTLEMENT_WORKFLOW_APPROVAL_TO_GITHUB
+- Employees can submit settlement proposals.
+- Admin can approve, reject, modify amount, delete, mark paid/broken, or convert approved settlement to a payment plan.
+- No new SQL required if the existing security cleanup SQL with the settlements table has already been run.
 
 
-CALL LOGGING + CONTACT INTELLIGENCE
-- Run SQL_TO_RUN_IN_SUPABASE/RUN_THIS_PROMISE_AUTOMATION_AND_CALL_INTELLIGENCE_SQL.sql in the matching Supabase project.
-- Phone clicks still use tel: links so RingCentral Chrome extension can detect/dial them.
-- After a phone click, the CRM auto-opens a call outcome popup so collectors can log No Answer, Voicemail, RPC, Promise, Refusal, Dispute, Callback, Wrong Number, DNC, etc.
-- The Calls / Contact Intelligence dashboard tracks contact rate, right-party-contact rate, collector call report, callback queue, bad-number review, recent calls, and CSV export.
+MANAGER QA + COLLECTOR SCORECARDS UPDATE
+- Adds full-page Manager QA / Collector Scorecards.
+- Employees can view their own scorecard.
+- Admin can review all collectors, save QA/coaching notes, mark Compliance Concern, Coaching Needed, Needs Review, or Good.
+- Exports scorecards to CSV.
+- No new SQL required; uses existing CRM tables and local QA-note fallback.
+
+SYSTEM CHECK / VERSION LOCK BUILD
+- Upload this ZIP only to the LIVE repo.
+- Run: npm install && npm run dev
+- Use the floating 'System Check' button after login to verify the build.
+- No SQL changes are required for this QA build.
+
+
+MESSENGER_PRESENCE_CONTACTS_FB_LAYOUT_FIX:
+- Online count includes current logged-in user.
+- Contact list shows all signed-up staff/admin users, including current user as You.
+- Message bubbles show sender name, timestamp/date, seen status, and attached account separately.
